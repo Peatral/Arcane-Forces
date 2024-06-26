@@ -38,14 +38,14 @@ public class ModLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.STRIPPED_OLIBANUM_LOG.block().get());
             dropSelf(ModBlocks.STRIPPED_OLIBANUM_WOOD.block().get());
             dropSelf(ModBlocks.OLIBANUM_SAPLING.block().get());
-            add(ModBlocks.OLIBANUM_LEAVES.block().get(), block -> createOakLeavesDrops(block, ModBlocks.OLIBANUM_SAPLING.block().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+            add(ModBlocks.OLIBANUM_LEAVES.block().get(), block -> createLeavesDrops(block, ModBlocks.OLIBANUM_SAPLING.block().get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
             dropSelf(ModBlocks.MYRRH_LOG.block().get());
             dropSelf(ModBlocks.MYRRH_WOOD.block().get());
             dropSelf(ModBlocks.STRIPPED_MYRRH_LOG.block().get());
             dropSelf(ModBlocks.STRIPPED_MYRRH_WOOD.block().get());
             dropSelf(ModBlocks.MYRRH_SAPLING.block().get());
-            add(ModBlocks.MYRRH_LEAVES.block().get(), block -> createOakLeavesDrops(block, ModBlocks.MYRRH_SAPLING.block().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+            add(ModBlocks.MYRRH_LEAVES.block().get(), block -> createLeavesDrops(block, ModBlocks.MYRRH_SAPLING.block().get(), NORMAL_LEAVES_SAPLING_CHANCES));
         }
     }
 }
