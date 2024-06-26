@@ -1,0 +1,26 @@
+{
+  "anvil_cost": 5,
+  "description": {
+    "translate": "enchantment.arcaneforces.fire_curse"
+  },
+  "effects": {
+    "arcaneforces:spell": {
+      "type": "arcaneforces:fire"
+    }
+  },
+  "max_cost": {
+    "base": 10,
+    "per_level_above_first": 20
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 20
+  },
+  "primary_items": "#arcaneforces:enchantable/spell_holders",
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#arcaneforces:enchantable/spell_holders",
+  "weight": 3
+}

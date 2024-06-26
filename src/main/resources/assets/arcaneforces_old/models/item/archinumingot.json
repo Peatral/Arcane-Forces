@@ -1,0 +1,6 @@
+{
+  "parent": "arcaneforces:item/standard_item",
+  "textures": {
+    "layer0": "arcaneforces:items/archinum_ingot"
+  }
+}

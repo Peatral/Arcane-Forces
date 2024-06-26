@@ -1,0 +1,9 @@
+// 1.21	2024-06-26T17:49:13.81502	Registries
+c4265b1521052138860123a55558a9a42952c93d data/arcaneforces/damage_type/death_curse.json
+be8b8e3a230091bc14e55afec8e91a27bf32e1b5 data/arcaneforces/damage_type/ritual_sacrifice.json
+ed88da69fe31d503b00b99b2f844ff6fd8dbad14 data/arcaneforces/enchantment/death_curse.json
+09aa6ca914cb6c1f608cf8580d2f9c4a39243d3d data/arcaneforces/enchantment/fire_curse.json
+2a42e7ac7a616e68b7f1291e96828967c4ee1f65 data/arcaneforces/enchantment/flight_blessing.json
+98ad56f29500b14d0dfe8dc9b15dc2df7bfb5a08 data/arcaneforces/enchantment/poison_curse.json
+099e42aca49522bc7a9d63560a4a941f138ef4ba data/arcaneforces/worldgen/configured_feature/myrrh.json
+1b6b07ae5d0a0eed4b8c998daa6e5f9f75d0ce2d data/arcaneforces/worldgen/configured_feature/olibanum.json

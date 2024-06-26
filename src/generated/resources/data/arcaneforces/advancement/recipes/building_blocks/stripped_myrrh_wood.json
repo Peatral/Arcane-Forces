@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stripped_myrrh_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "arcaneforces:stripped_myrrh_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "arcaneforces:stripped_myrrh_wood"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_stripped_myrrh_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "arcaneforces:stripped_myrrh_wood"
+    ]
+  }
+}

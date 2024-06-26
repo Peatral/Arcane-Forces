@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "arcaneforces:block/olibanum_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "arcaneforces:block/olibanum_wood"
+    },
+    "axis=z": {
+      "model": "arcaneforces:block/olibanum_wood_horizontal",
+      "x": 90
+    }
+  }
+}

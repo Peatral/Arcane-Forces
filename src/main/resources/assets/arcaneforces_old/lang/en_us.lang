@@ -1,0 +1,42 @@
+item.test.name=Test Item
+
+item.cursedRing.name=Cursed Ring
+item.ritualDagger.name=Ritual Dagger
+item.voodoodoll.name=Voodoo Doll
+
+tile.olibanum_log.name=Olibanum Log
+tile.myrrh_log.name=Myrrh Log
+tile.ore.ArchinumOre.name=Archinum Ore
+tile.ore.KorosiumOre.name=Korosium Ore
+tile.oreblock.ArchinumOre.name=Archinum Block
+tile.oreblock.KorosiumOre.name=Korosium Block
+
+item.archinumIngot.name=Archinum Ingot
+item.korosiumIngot.name=Korosium Ingot
+item.archinumDust.name=Archinum Dust
+item.korosiumDust.name=Korosium Dust
+item.archinumNugget.name=Archinum Nugget
+item.korosiumNugget.name=Korosium Nugget
+
+
+
+curse.fire=Fire Curse
+curse.death=Death Curse
+curse.flight=Flight Curse
+curse.poison=Poison Curse
+
+curses=Curses:
+curses.listitem=    -%1$s
+
+effect.flight=Flight
+
+key.arcaneforces.category=Arcane Forces
+key.castCurse.desc=Cast Curse
+key.cycleCurse.desc=Cycle Curse
+
+death.attack.sacrifice=%1$s sacrificed himself
+death.attack.sacrifice.player=%2$s sacrificed %1$s
+death.attack.deathcurse=%1$s was killed by his cursed fate
+death.attack.deathcurse.player=%2$s shatterd %1$'s soul
+
+itemGroup.tabArcaneForces=Arcane Forces

@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "arcaneforces:basic_cube"
+  },
+  "variants": {
+    "type": {
+      "archinum": {"textures": {"all": "arcaneforces:blocks/archinum_block"}},
+      "korosium": {"textures": {"all": "arcaneforces:blocks/korosium_block"}}
+    },
+    "inventory": [{}]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "arcaneforces:block/myrrh_leaves"
+  }
+}

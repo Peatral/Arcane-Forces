@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "arcaneforces:item/ritualdagger_bloody",
+      "predicate": {
+        "arcaneforces:hastarget": 1.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "arcaneforces:item/ritualdagger"
+  }
+}

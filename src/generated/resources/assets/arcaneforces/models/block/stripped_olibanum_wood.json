@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arcaneforces:block/stripped_olibanum_log",
+    "side": "arcaneforces:block/stripped_olibanum_log"
+  }
+}

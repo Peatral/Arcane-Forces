@@ -1,0 +1,13 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle" : "arcaneforces:blocks/myrrh_side",
+        "sides": "arcaneforces:blocks/myrrh_side",
+        "north": "arcaneforces:blocks/myrrh_side",
+        "west": "arcaneforces:blocks/myrrh_side",
+        "east": "arcaneforces:blocks/myrrh_side",
+        "south": "arcaneforces:blocks/myrrh_side",
+        "up": "arcaneforces:blocks/myrrh_top",
+        "down": "arcaneforces:blocks/myrrh_top"
+    }
+}

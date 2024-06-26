@@ -1,0 +1,13 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle" : "arcaneforces:blocks/olibanum_side",
+        "sides": "arcaneforces:blocks/olibanum_side",
+        "north": "arcaneforces:blocks/olibanum_side",
+        "west": "arcaneforces:blocks/olibanum_side",
+        "east": "arcaneforces:blocks/olibanum_side",
+        "south": "arcaneforces:blocks/olibanum_side",
+        "up": "arcaneforces:blocks/olibanum_top",
+        "down": "arcaneforces:blocks/olibanum_top"
+    }
+}
