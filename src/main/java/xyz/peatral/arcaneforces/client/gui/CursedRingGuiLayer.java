@@ -22,21 +22,16 @@ import java.util.List;
 
 public class CursedRingGuiLayer implements LayeredDraw.Layer {
 
+    public static final int fadeDuration = 40;
+    public static final int hotbarX = 4;
+    public static final int hotbarY = 4;
     private static ResourceLocation HOTBAR = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "hud/hotbar_ring");
     private static ResourceLocation SELECTOR = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "hud/hotbar_selector");
     private static ResourceLocation COOLDOWN_OVERLAY = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "hud/hotbar_cooldown");
-
     int selectedSlot = -1;
     int slotAmount = 5;
     int cooldown = 0;
     int cooldownMax = 0;
-
-    public static final int fadeDuration = 40;
-    public static final int hotbarX = 4;
-    public static final int hotbarY = 4;
-
-
-
     TimeTracker timeTracker = new TimeTracker();
 
     public void setSlot(int slot) {
@@ -77,17 +72,17 @@ public class CursedRingGuiLayer implements LayeredDraw.Layer {
         GlStateManager._enableBlend();
         for (int i = 0; i < slotAmount; i++) {
             if (i == 0) {
-                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 0, hotbarX, hotbarY,  22, 21);
+                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 0, hotbarX, hotbarY, 22, 21);
             } else if (i == slotAmount - 1) {
-                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 41, hotbarX, hotbarY + 1 + 20 * i,  22, 21);
+                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 41, hotbarX, hotbarY + 1 + 20 * i, 22, 21);
             } else {
-                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 21, hotbarX, hotbarY + 1 + 20 * i,  22, 21);
+                guiGraphics.blitSprite(HOTBAR, 22, 62, 0, 21, hotbarX, hotbarY + 1 + 20 * i, 22, 21);
             }
         }
 
         List<Holder<Spell>> spells = Utils.getAllSpells(stack);
         for (int i = 0; i < spells.size() && i < slotAmount; i++) {
-            guiGraphics.blitSprite(spells.get(i).value().iconResource, hotbarX + 3, hotbarY + 3 + 20 * i,  16, 16);
+            guiGraphics.blitSprite(spells.get(i).value().iconResource, hotbarX + 3, hotbarY + 3 + 20 * i, 16, 16);
         }
 
         //renderCooldown(stack);

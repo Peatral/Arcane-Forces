@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bamboo": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:bamboo"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_fragrant_resin": {
+      "conditions": {
+        "items": [
+          {
+            "items": "arcaneforces:fragrant_resin"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "arcaneforces:incense_stick"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_bamboo",
+      "has_fragrant_resin"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "arcaneforces:incense_stick"
+    ]
+  }
+}

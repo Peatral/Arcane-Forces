@@ -46,6 +46,8 @@ public class ModLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.STRIPPED_MYRRH_WOOD.block().get());
             dropSelf(ModBlocks.MYRRH_SAPLING.block().get());
             add(ModBlocks.MYRRH_LEAVES.block().get(), block -> createLeavesDrops(block, ModBlocks.MYRRH_SAPLING.block().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+            add(ModBlocks.INCENSE_STICK.block().get(), this::createCandleDrops);
         }
     }
 }

@@ -10,6 +10,7 @@ import xyz.peatral.arcaneforces.content.magic.spells.Spell;
 
 public class ModLanguageProvider extends LanguageProvider {
     private final String modid;
+
     public ModLanguageProvider(PackOutput output, String modid, String locale) {
         super(output, modid, locale);
         this.modid = modid;
@@ -51,6 +52,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ModBlocks.MYRRH_WOOD.block().get(), "Myrrh Wood");
         add(ModBlocks.STRIPPED_OLIBANUM_WOOD.block().get(), "Stripped Olibanum Wood");
         add(ModBlocks.STRIPPED_MYRRH_WOOD.block().get(), "Stripped Myrrh Wood");
+
+        add(ModBlocks.INCENSE_STICK.block().get(), "Incense Stick");
 
         add("death.attack.ritual_sacrifice", "%1$s was sacrificed");
         add("death.attack.ritual_sacrifice.player", "%1$s was sacrificed by %2$s");

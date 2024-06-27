@@ -27,16 +27,12 @@ public class Spell {
     public static final StreamCodec<RegistryFriendlyByteBuf, Holder<Spell>> STREAM_CODEC = ByteBufCodecs.holderRegistry(ModSpells.REGISTRY_KEY);
 
 
-
     public static final ResourceLocation CURSE_BACK_GOOD = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "curses/backgrounds/good");
     public static final ResourceLocation CURSE_BACK_BAD = ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "curses/backgrounds/bad");
-
+    public ResourceLocation iconResource;
     private boolean isBad;
     private int maxUses;
     private int cooldown;
-
-    public ResourceLocation iconResource;
-
     @Nullable
     private String descriptionId;
 
@@ -50,6 +46,17 @@ public class Spell {
         this.isBad = isBad;
         this.maxUses = maxUses;
         this.cooldown = cooldown;
+    }
+
+    public static Component getFullname(Holder<Spell> holder, int level) {
+        MutableComponent mutablecomponent = holder.value().getDescription().copy();
+        ComponentUtils.mergeStyles(mutablecomponent, Style.EMPTY.withColor(ChatFormatting.RED));
+
+        if (level != 1 || holder.value().getMaxLevel() != 1) {
+            mutablecomponent.append(CommonComponents.SPACE).append(Component.translatable("curse.level." + level));
+        }
+
+        return mutablecomponent;
     }
 
     public Component getDescription() {
@@ -71,17 +78,6 @@ public class Spell {
 
     public String getDescriptionId() {
         return this.getOrCreateDescriptionId();
-    }
-
-    public static Component getFullname(Holder<Spell> holder, int level) {
-        MutableComponent mutablecomponent = holder.value().getDescription().copy();
-        ComponentUtils.mergeStyles(mutablecomponent, Style.EMPTY.withColor(ChatFormatting.RED));
-
-        if (level != 1 || holder.value().getMaxLevel() != 1) {
-            mutablecomponent.append(CommonComponents.SPACE).append(Component.translatable("curse.level." + level));
-        }
-
-        return mutablecomponent;
     }
 
     public int getMaxLevel() {

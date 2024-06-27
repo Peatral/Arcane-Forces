@@ -5,6 +5,7 @@
   "arcaneforces.tooltip.ownedby": "Owned by: %1$s",
   "arcaneforces.tooltip.rank": "Rank %1$d: %2$s/%3$s",
   "arcaneforces.tooltip.target": "Target: %1$s",
+  "block.arcaneforces.incense_stick": "Incense Stick",
   "block.arcaneforces.myrrh_leaves": "Myrrh Leaves",
   "block.arcaneforces.myrrh_log": "Myrrh Log",
   "block.arcaneforces.myrrh_sapling": "Myrrh Sapling",

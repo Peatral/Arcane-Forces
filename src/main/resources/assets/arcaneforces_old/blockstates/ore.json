@@ -5,9 +5,19 @@
   },
   "variants": {
     "type": {
-      "archinum": {"textures": {"all": "arcaneforces:blocks/archinum_ore"}},
-      "korosium": {"textures": {"all": "arcaneforces:blocks/korosium_ore"}}
+      "archinum": {
+        "textures": {
+          "all": "arcaneforces:blocks/archinum_ore"
+        }
+      },
+      "korosium": {
+        "textures": {
+          "all": "arcaneforces:blocks/korosium_ore"
+        }
+      }
     },
-    "inventory": [{}]
+    "inventory": [
+      {}
+    ]
   }
 }

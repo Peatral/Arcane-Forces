@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ritualdagger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "arcaneforces:ritualdagger"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "arcaneforces:myrrh_resin"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ritualdagger"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "arcaneforces:myrrh_resin"
+    ]
+  }
+}

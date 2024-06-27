@@ -1,23 +1,23 @@
 {
-    "forge_marker": 1,
-    "variants": {
-        "axis=y": {
-            "model": "arcaneforces:olibanum_log"
-        },
-        "axis=z": {
-            "model": "arcaneforces:olibanum_log",
-            "x": 90
-        },
-        "axis=x": {
-            "model": "arcaneforces:olibanum_log",
-            "x": 90,
-            "y": 90
-        },
-        "axis=none": {
-            "model": "arcaneforces:olibanum_log"
-        },
-        "inventory": {
-            "model": "arcaneforces:olibanum_log"
-        }
+  "forge_marker": 1,
+  "variants": {
+    "axis=y": {
+      "model": "arcaneforces:olibanum_log"
+    },
+    "axis=z": {
+      "model": "arcaneforces:olibanum_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "arcaneforces:olibanum_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=none": {
+      "model": "arcaneforces:olibanum_log"
+    },
+    "inventory": {
+      "model": "arcaneforces:olibanum_log"
     }
+  }
 }

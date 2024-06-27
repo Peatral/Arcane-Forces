@@ -17,13 +17,13 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> INCENSE_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "incense_logs"));
         public static final TagKey<Block> OLIBANUM_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "olibanum_logs"));
-        public static final TagKey<Block> MYRRH_LOGS = BlockTags.create( ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_logs"));
+        public static final TagKey<Block> MYRRH_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_logs"));
     }
 
     public static class Items {
         public static final TagKey<Item> SPELL_HOLDERS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "enchantable/spell_holders"));
         public static final TagKey<Item> INCENSE_LOGS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "incense_logs"));
         public static final TagKey<Item> OLIBANUM_LOGS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "olibanum_logs"));
-        public static final TagKey<Item> MYRRH_LOGS = ItemTags.create( ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_logs"));
+        public static final TagKey<Item> MYRRH_LOGS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_logs"));
     }
 }

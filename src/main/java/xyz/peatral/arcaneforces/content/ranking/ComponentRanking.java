@@ -26,21 +26,17 @@ public class ComponentRanking implements IRanking {
         this(parent, ModDataComponents.AFFINITY.get(), ModDataComponents.OWNER.get());
     }
 
-    public void setTotalAffinity(int value) {
-        this.parent.set(affinityComponent, value);
-    }
-
     @Override
     public int getTotalAffinity() {
         return this.parent.getOrDefault(affinityComponent, 0);
     }
 
-    public boolean hasOwner() {
-        return this.getOwner() != null;
+    public void setTotalAffinity(int value) {
+        this.parent.set(affinityComponent, value);
     }
 
-    public void setOwner(ResolvableProfile owner) {
-        this.parent.set(ownerComponent, owner);
+    public boolean hasOwner() {
+        return this.getOwner() != null;
     }
 
     public int getRank() {
@@ -48,8 +44,17 @@ public class ComponentRanking implements IRanking {
     }
 
     @Override
+    public void setRank(int rank) {
+        this.setTotalAffinity(rank * rank * 1000);
+    }
+
+    @Override
     public ResolvableProfile getOwner() {
         return this.parent.get(ownerComponent);
+    }
+
+    public void setOwner(ResolvableProfile owner) {
+        this.parent.set(ownerComponent, owner);
     }
 
     @Override
@@ -66,11 +71,6 @@ public class ComponentRanking implements IRanking {
     @Override
     public void setName(Component name) {
         this.parent.set(DataComponents.CUSTOM_NAME, name);
-    }
-
-    @Override
-    public void setRank(int rank) {
-        this.setTotalAffinity(rank * rank * 1000);
     }
 
     @Override

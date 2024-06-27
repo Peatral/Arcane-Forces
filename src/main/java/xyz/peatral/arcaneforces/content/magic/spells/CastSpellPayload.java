@@ -19,11 +19,11 @@ public record CastSpellPayload(Holder<Spell> spell, ResolvableProfile target) im
     public static final CustomPacketPayload.Type<CastSpellPayload> TYPE = new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "cast_spell"));
 
     public static final Codec<CastSpellPayload> CODEC = RecordCodecBuilder.create(instance ->
-                    instance.group(
-                            Spell.CODEC.fieldOf("spell").forGetter(CastSpellPayload::spell),
-                            ResolvableProfile.CODEC.fieldOf("target").forGetter(CastSpellPayload::target)
-                    ).apply(instance, CastSpellPayload::new)
-            );
+            instance.group(
+                    Spell.CODEC.fieldOf("spell").forGetter(CastSpellPayload::spell),
+                    ResolvableProfile.CODEC.fieldOf("target").forGetter(CastSpellPayload::target)
+            ).apply(instance, CastSpellPayload::new)
+    );
     public static final StreamCodec<RegistryFriendlyByteBuf, CastSpellPayload> STREAM_CODEC = StreamCodec.composite(
             Spell.STREAM_CODEC,
             CastSpellPayload::spell,
@@ -31,11 +31,6 @@ public record CastSpellPayload(Holder<Spell> spell, ResolvableProfile target) im
             CastSpellPayload::target,
             CastSpellPayload::new
     );
-
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
 
     public static void handlePacketServer(final CastSpellPayload data, final IPayloadContext context) {
         context.enqueueWork(() -> data.target().id().ifPresent(uuid -> {
@@ -50,5 +45,10 @@ public record CastSpellPayload(Holder<Spell> spell, ResolvableProfile target) im
             context.disconnect(Component.translatable(Main.MOD_ID + ".networking.failed", e.getMessage()));
             return null;
         });
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

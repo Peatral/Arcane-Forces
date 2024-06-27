@@ -1,23 +1,23 @@
 {
-    "forge_marker": 1,
-    "variants": {
-        "axis=y": {
-            "model": "arcaneforces:myrrh_log"
-        },
-        "axis=z": {
-            "model": "arcaneforces:myrrh_log",
-            "x": 90
-        },
-        "axis=x": {
-            "model": "arcaneforces:myrrh_log",
-            "x": 90,
-            "y": 90
-        },
-        "axis=none": {
-            "model": "arcaneforces:myrrh_log"
-        },
-        "inventory": {
-            "model": "arcaneforces:myrrh_log"
-        }
+  "forge_marker": 1,
+  "variants": {
+    "axis=y": {
+      "model": "arcaneforces:myrrh_log"
+    },
+    "axis=z": {
+      "model": "arcaneforces:myrrh_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "arcaneforces:myrrh_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=none": {
+      "model": "arcaneforces:myrrh_log"
+    },
+    "inventory": {
+      "model": "arcaneforces:myrrh_log"
     }
+  }
 }

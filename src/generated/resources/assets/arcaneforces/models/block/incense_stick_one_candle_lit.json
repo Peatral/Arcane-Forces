@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_candle",
+  "textures": {
+    "all": "arcaneforces:block/incense_stick_lit",
+    "particle": "arcaneforces:block/incense_stick_lit"
+  }
+}

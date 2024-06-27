@@ -24,7 +24,6 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> FRAGRANT_RESIN = ITEMS.register("fragrant_resin", () -> new Item(new Item.Properties()));
 
 
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

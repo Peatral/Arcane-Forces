@@ -13,7 +13,7 @@ public class FireSpell extends Spell {
 
     @Override
     public void castCurse(Level world, Player target, Player attacker) {
-        target.addEffect(new MobEffectInstance(ModMobEffects.FIRE, 20*90, 0));
+        target.addEffect(new MobEffectInstance(ModMobEffects.FIRE, 20 * 90, 0));
     }
 
 

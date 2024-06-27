@@ -1,14 +1,14 @@
 {
-    "parent": "arcaneforces:item/standard_item",
-    "textures": {
-        "layer0": "arcaneforces:items/ritualdagger"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "hastarget": 1
-            },
-            "model": "arcaneforces:item/ritualdagger_bloody"
-        }
-    ]
+  "parent": "arcaneforces:item/standard_item",
+  "textures": {
+    "layer0": "arcaneforces:items/ritualdagger"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "hastarget": 1
+      },
+      "model": "arcaneforces:item/ritualdagger_bloody"
+    }
+  ]
 }

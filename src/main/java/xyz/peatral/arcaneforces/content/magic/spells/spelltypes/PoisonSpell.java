@@ -14,6 +14,6 @@ public class PoisonSpell extends Spell {
 
     @Override
     public void castCurse(Level level, Player target, Player attacker) {
-        target.addEffect(new MobEffectInstance(ModMobEffects.POISON, 20*90, 0));
+        target.addEffect(new MobEffectInstance(ModMobEffects.POISON, 20 * 90, 0));
     }
 }

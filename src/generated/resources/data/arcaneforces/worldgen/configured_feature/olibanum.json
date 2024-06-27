@@ -46,7 +46,9 @@
       "state": {
         "Name": "arcaneforces:olibanum_log",
         "Properties": {
-          "axis": "y"
+          "axis": "y",
+          "placed_by_player": "false",
+          "state": "young"
         }
       }
     }

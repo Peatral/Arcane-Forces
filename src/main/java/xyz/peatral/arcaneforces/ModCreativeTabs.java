@@ -26,6 +26,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.VOODOO_DOLL.get());
 
                 output.accept(ModItems.FRAGRANT_RESIN.get());
+                output.accept(ModBlocks.INCENSE_STICK.block().get());
 
                 output.accept(ModBlocks.OLIBANUM_SAPLING.block().get());
                 output.accept(ModBlocks.MYRRH_SAPLING.block().get());
@@ -40,6 +41,7 @@ public class ModCreativeTabs {
                 output.accept(ModBlocks.STRIPPED_MYRRH_WOOD.block().get());
                 output.accept(ModBlocks.OLIBANUM_LEAVES.block().get());
                 output.accept(ModBlocks.MYRRH_LEAVES.block().get());
+
             })
             .build()
     );

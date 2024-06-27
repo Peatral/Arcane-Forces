@@ -13,6 +13,8 @@ import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.NeoForge;
 import xyz.peatral.arcaneforces.api.events.RankUpEvent;
@@ -79,5 +81,20 @@ public class Utils {
             resolvableprofile.resolve()
                     .thenAcceptAsync(profile -> stack.set(componentType, profile), SkullBlockEntity.CHECKED_MAIN_THREAD_EXECUTOR);
         }
+    }
+
+    public static BlockState copyProperties(BlockState fromState, BlockState toState) {
+        for (Property<?> property : fromState.getProperties()) {
+            toState = copyProperty(property, fromState, toState);
+        }
+        return toState;
+    }
+
+    public static <T extends Comparable<T>> BlockState copyProperty(Property<T> property, BlockState fromState,
+                                                                    BlockState toState) {
+        if (fromState.hasProperty(property) && toState.hasProperty(property)) {
+            return toState.setValue(property, fromState.getValue(property));
+        }
+        return toState;
     }
 }

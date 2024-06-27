@@ -14,6 +14,6 @@ public class FlightSpell extends Spell {
 
     @Override
     public void castCurse(Level level, Player target, Player attacker) {
-        target.addEffect(new MobEffectInstance(ModMobEffects.FLIGHT, 20*90, 0));
+        target.addEffect(new MobEffectInstance(ModMobEffects.FLIGHT, 20 * 90, 0));
     }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "arcaneforces:block/myrrh_log_top",
+    "side": "arcaneforces:block/myrrh_log_resin"
+  }
+}

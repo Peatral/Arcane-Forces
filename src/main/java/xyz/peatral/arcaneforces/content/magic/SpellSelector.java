@@ -35,11 +35,6 @@ public record SpellSelector(int slot, int slotAmount, int cooldown, int cooldown
             SpellSelector::new
     );
 
-    @Override
-    public Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
-
     public static void handlePacketClient(final SpellSelector data, final IPayloadContext context) {
         context.enqueueWork(() -> {
                     context.player().setData(ModDataAttachments.SPELL_SELECTOR, data);
@@ -57,5 +52,10 @@ public record SpellSelector(int slot, int slotAmount, int cooldown, int cooldown
             context.disconnect(Component.translatable(Main.MOD_ID + ".networking.failed", e.getMessage()));
             return null;
         });
+    }
+
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }
