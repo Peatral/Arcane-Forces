@@ -1,6 +1,6 @@
 {
   "variants": {
-    "axis=x,state=aged": {
+    "axis=x,state=default": {
       "model": "arcaneforces:block/myrrh_log_horizontal",
       "x": 90,
       "y": 90
@@ -15,12 +15,7 @@
       "x": 90,
       "y": 90
     },
-    "axis=x,state=young": {
-      "model": "arcaneforces:block/myrrh_log_horizontal_young",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y,state=aged": {
+    "axis=y,state=default": {
       "model": "arcaneforces:block/myrrh_log"
     },
     "axis=y,state=resin": {
@@ -29,10 +24,7 @@
     "axis=y,state=scarred": {
       "model": "arcaneforces:block/myrrh_log_scarred"
     },
-    "axis=y,state=young": {
-      "model": "arcaneforces:block/myrrh_log_young"
-    },
-    "axis=z,state=aged": {
+    "axis=z,state=default": {
       "model": "arcaneforces:block/myrrh_log_horizontal",
       "x": 90
     },
@@ -42,10 +34,6 @@
     },
     "axis=z,state=scarred": {
       "model": "arcaneforces:block/myrrh_log_horizontal_scarred",
-      "x": 90
-    },
-    "axis=z,state=young": {
-      "model": "arcaneforces:block/myrrh_log_horizontal_young",
       "x": 90
     }
   }

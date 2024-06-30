@@ -1,4 +1,4 @@
-package xyz.peatral.arcaneforces.infrastructure.data;
+package xyz.peatral.arcaneforces.infrastructure.data.tags;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

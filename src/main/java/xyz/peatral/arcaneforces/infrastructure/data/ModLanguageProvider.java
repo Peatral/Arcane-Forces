@@ -2,10 +2,7 @@ package xyz.peatral.arcaneforces.infrastructure.data;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
-import xyz.peatral.arcaneforces.ModBlocks;
-import xyz.peatral.arcaneforces.ModItems;
-import xyz.peatral.arcaneforces.ModMobEffects;
-import xyz.peatral.arcaneforces.ModSpells;
+import xyz.peatral.arcaneforces.*;
 import xyz.peatral.arcaneforces.content.magic.spells.Spell;
 
 public class ModLanguageProvider extends LanguageProvider {

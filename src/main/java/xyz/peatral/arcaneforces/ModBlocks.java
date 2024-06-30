@@ -19,6 +19,7 @@ import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
+import xyz.peatral.arcaneforces.content.worldgen.ModTrees;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -31,26 +32,26 @@ public class ModBlocks {
 
 
     public static final BlockWithItem<SaplingBlock, BlockItem> OLIBANUM_SAPLING = registerBlockAndItem("olibanum_sapling", () -> new SaplingBlock(
-                    ModTrees.OLIBANUM,
-                    BlockBehaviour.Properties.of()
-                            .mapColor(MapColor.PLANT)
-                            .noCollission()
-                            .randomTicks()
-                            .instabreak()
-                            .sound(SoundType.GRASS)
-                            .pushReaction(PushReaction.DESTROY)),
+            ModTrees.OLIBANUM,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY)),
             block -> new BlockItem(block, new Item.Properties())
     );
 
     public static final BlockWithItem<SaplingBlock, BlockItem> MYRRH_SAPLING = registerBlockAndItem("myrrh_sapling", () -> new SaplingBlock(
-                    ModTrees.MYRRH,
-                    BlockBehaviour.Properties.of()
-                            .mapColor(MapColor.PLANT)
-                            .noCollission()
-                            .randomTicks()
-                            .instabreak()
-                            .sound(SoundType.GRASS)
-                            .pushReaction(PushReaction.DESTROY)),
+            ModTrees.MYRRH,
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY)),
             block -> new BlockItem(block, new Item.Properties())
     );
 

@@ -42,7 +42,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
         VariantBlockStateBuilder builder = getVariantBuilder(block);
         for (IncenseLogBlock.State state : IncenseLogBlock.State.values()) {
-            String suffix = state == IncenseLogBlock.State.AGED ? "" : "_" + state.getSerializedName();
+            String suffix = state == IncenseLogBlock.State.DEFAULT ? "" : "_" + state.getSerializedName();
             ResourceLocation side = blockTexture(block).withSuffix(suffix);
             ResourceLocation end = blockTexture(block).withSuffix("_top");
             BlockModelBuilder vertical = models().cubeColumn(name + suffix, side, end);

@@ -131,7 +131,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         tappingRecipe(
                 "olibanum_scarred",
-                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.AGED),
+                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
                 ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
@@ -142,7 +142,7 @@ public class ModRecipeProvider extends RecipeProvider {
         );
         tappingRecipe(
                 "myrrh_scarred",
-                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.AGED),
+                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
                 ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),

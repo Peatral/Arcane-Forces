@@ -1,4 +1,4 @@
-// 1.21	2024-06-28T00:08:08.9740837	Recipes
+// 1.21	2024-06-30T14:35:55.096470948	Recipes
 466b245d1203d4a2d513fc68ab4cb3432bfe6456 data/arcaneforces/advancement/recipes/building_blocks/myrrh_wood.json
 b4a0344d3c4e9a09a55708bbbdea0011df5a3a36 data/arcaneforces/advancement/recipes/building_blocks/olibanum_wood.json
 9950a55604f5498694898e40fa564ffd7ecb93dc data/arcaneforces/advancement/recipes/building_blocks/ritual_dagger.json
@@ -11,10 +11,10 @@ cfbbc47b23b6911720e3ef4de1cabd7203e82b69 data/arcaneforces/advancement/recipes/t
 28de2b402e44ddbf7ddfbb163b7c7727643a200a data/arcaneforces/advancement/recipes/tapping/olibanum_scarred.json
 82a9ea239a9252958d08e776825f9f5c51a39cbf data/arcaneforces/recipe/incense_stick.json
 5dfab51d8c2345c5767d7f450ddea1c243707037 data/arcaneforces/recipe/myrrh_resin.json
-92f0223a3253fe176984dbe8c5c1a54801692420 data/arcaneforces/recipe/myrrh_scarred.json
+a648b34e1c2323fb22461b28abf8f3f19fa885ae data/arcaneforces/recipe/myrrh_scarred.json
 f0f90dfbca29161b6579111d288323594907d796 data/arcaneforces/recipe/myrrh_wood.json
 895469f436ae2d3fe504ff93b1531c9dea895527 data/arcaneforces/recipe/olibanum_resin.json
-77352cffcc42adc5dedc6c900d976e03ff432d92 data/arcaneforces/recipe/olibanum_scarred.json
+2c016d880c6ed41b53306b85dde3c3706ccf255a data/arcaneforces/recipe/olibanum_scarred.json
 09d8c1d45d33c1bee47cb642bfcf4e5f96a325d6 data/arcaneforces/recipe/olibanum_wood.json
 76d27f2be645fd5e4744dea53c5e885e8c5c6a93 data/arcaneforces/recipe/ritual_dagger.json
 e119678f022db743d0cb51f6edc52faad9901da5 data/arcaneforces/recipe/stripped_myrrh_wood.json

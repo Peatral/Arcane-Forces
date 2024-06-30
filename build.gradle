@@ -128,7 +128,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+    // implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

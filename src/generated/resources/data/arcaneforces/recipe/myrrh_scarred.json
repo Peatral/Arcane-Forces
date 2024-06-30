@@ -5,7 +5,7 @@
     "Properties": {
       "axis": "y",
       "placed_by_player": "false",
-      "state": "aged"
+      "state": "default"
     }
   },
   "output": {

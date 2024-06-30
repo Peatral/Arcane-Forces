@@ -30,14 +30,14 @@ public class IncenseLogBlock extends RotatedPillarBlock {
                 .ignitedByLava());
         registerDefaultState(
                 super.defaultBlockState()
-                        .setValue(STATE, State.YOUNG)
+                        .setValue(STATE, State.DEFAULT)
                         .setValue(PLACED_BY_PLAYER, false)
         );
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return super.getStateForPlacement(pContext).setValue(STATE, State.AGED).setValue(PLACED_BY_PLAYER, true);
+        return super.getStateForPlacement(pContext).setValue(STATE, State.DEFAULT).setValue(PLACED_BY_PLAYER, true);
     }
 
     @Override
@@ -50,24 +50,18 @@ public class IncenseLogBlock extends RotatedPillarBlock {
         super.randomTick(pState, pLevel, pPos, pRandom);
 
         // TODO: Balancing: tweak these numbers
-        if (pState.getValue(STATE).equals(State.SCARRED) && pRandom.nextInt(3) == 0) {
+        if (pState.getValue(STATE) == State.SCARRED && pRandom.nextInt(3) == 0) {
             pLevel.setBlock(pPos, pState.setValue(STATE, State.RESIN), 2);
-        }
-        if (pState.getValue(STATE).equals(State.YOUNG) && pRandom.nextInt(3) == 0) {
-            pLevel.setBlock(pPos, pState.setValue(STATE, State.AGED), 2);
         }
     }
 
     @Override
     protected boolean isRandomlyTicking(BlockState pState) {
-        return !pState.getValue(PLACED_BY_PLAYER) && (
-                pState.getValue(STATE).equals(State.YOUNG) || pState.getValue(STATE).equals(State.SCARRED)
-        ) || super.isRandomlyTicking(pState);
+        return !pState.getValue(PLACED_BY_PLAYER) && pState.getValue(STATE) == State.SCARRED || super.isRandomlyTicking(pState);
     }
 
     public enum State implements StringRepresentable {
-        YOUNG("young"),
-        AGED("aged"),
+        DEFAULT("default"),
         SCARRED("scarred"),
         RESIN("resin");
 
