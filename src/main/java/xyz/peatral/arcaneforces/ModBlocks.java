@@ -18,6 +18,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import xyz.peatral.arcaneforces.content.shrines.BellRingerBlock;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.worldgen.ModTrees;
 
@@ -63,6 +64,11 @@ public class ModBlocks {
     public static final BlockWithItem<LeavesBlock, BlockItem> MYRRH_LEAVES = registerBlockAndItem(
             "myrrh_leaves",
             leaves(SoundType.GRASS),
+            block -> new BlockItem(block, new Item.Properties())
+    );
+    public static final BlockWithItem<BellRingerBlock, BlockItem> BELL_RINGER = registerBlockAndItem(
+            "bell_ringer",
+            BellRingerBlock::new,
             block -> new BlockItem(block, new Item.Properties())
     );
 

@@ -12,6 +12,7 @@ public class Main {
     public Main(IEventBus modEventBus, ModContainer modContainer) {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModMobEffects.register(modEventBus);
         ModSpells.register(modEventBus);
         ModEnchantmentEffects.register(modEventBus);

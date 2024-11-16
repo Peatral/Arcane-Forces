@@ -14,8 +14,8 @@ import xyz.peatral.arcaneforces.ModBlocks;
 import xyz.peatral.arcaneforces.content.worldgen.features.ModTreeFeatures;
 
 public class ModTreePlacements {
-    // public static final ResourceKey<PlacedFeature> OLIBANUM_CHECKED = key("olibanum_checked");
-    // public static final ResourceKey<PlacedFeature> MYRRH_CHECKED = key("myrrh_checked");
+    public static final ResourceKey<PlacedFeature> OLIBANUM_CHECKED = key("olibanum_checked");
+    public static final ResourceKey<PlacedFeature> MYRRH_CHECKED = key("myrrh_checked");
     public static final ResourceKey<PlacedFeature> OLIBANUM = key("olibanum");
     public static final ResourceKey<PlacedFeature> MYRRH = key("myrrh");
 
@@ -24,8 +24,8 @@ public class ModTreePlacements {
         Holder<ConfiguredFeature<?, ?>> olibanumHolder = holdergetter.getOrThrow(ModTreeFeatures.OLIBANUM);
         Holder<ConfiguredFeature<?, ?>> myrrhHolder = holdergetter.getOrThrow(ModTreeFeatures.MYRRH);
 
-        // PlacementUtils.register(context, OLIBANUM_CHECKED, olibanumHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.OLIBANUM_SAPLING.block().get()));
-        // PlacementUtils.register(context, MYRRH_CHECKED, myrrhHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.MYRRH_SAPLING.block().get()));
+        PlacementUtils.register(context, OLIBANUM_CHECKED, olibanumHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.OLIBANUM_SAPLING.block().get()));
+        PlacementUtils.register(context, MYRRH_CHECKED, myrrhHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.MYRRH_SAPLING.block().get()));
         PlacementUtils.register(context, OLIBANUM, olibanumHolder);
         PlacementUtils.register(context, MYRRH, myrrhHolder);
     }
