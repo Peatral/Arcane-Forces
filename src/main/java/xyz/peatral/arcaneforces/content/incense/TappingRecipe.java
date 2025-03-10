@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import xyz.peatral.arcaneforces.ModRecipeTypes;
 import xyz.peatral.arcaneforces.Utils;
@@ -43,7 +43,7 @@ public record TappingRecipe(
                     Codec.FLOAT.fieldOf("output_chance").forGetter(TappingRecipe::chance)
             ).apply(instance, TappingRecipe::new)
     );
-    public static final ToolAction TAPPING = ToolAction.get("tapping");
+    public static final ItemAbility TAPPING = ItemAbility.get("tapping");
     // TODO: replace this with something better
     private static final StreamCodec<ByteBuf, BlockState> BLOCKSTATE_STREAM_CODEC = ByteBufCodecs.fromCodec(BlockState.CODEC);
     private static final StreamCodec<ByteBuf, List<String>> STRING_LIST_STREAM_CODEC = ByteBufCodecs.fromCodec(Codec.list(Codec.STRING));
@@ -65,7 +65,7 @@ public record TappingRecipe(
 
     @SubscribeEvent
     public static void onBlockToolModification(BlockEvent.BlockToolModificationEvent event) {
-        if (event.getToolAction().equals(TAPPING)) {
+        if (event.getItemAbility().equals(TAPPING)) {
             BlockState inputState = event.getState();
             RecipeManager recipeManager = event.getPlayer().level().getRecipeManager();
             Optional<RecipeHolder<TappingRecipe>> foundRecipe = recipeManager

@@ -3,7 +3,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.142'
+    id 'net.neoforged.gradle.userdev' version '7.0.183'
 }
 
 tasks.named('wrapper', Wrapper).configure {
@@ -21,6 +21,8 @@ group = mod_group_id
 repositories {
     mavenLocal()
     maven { url "https://maven.shedaniel.me" }
+    maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
+    maven { url = "https://maven.createmod.net" }
 }
 
 base {
@@ -59,7 +61,7 @@ runs {
     }
 
     client2 {
-        configure("client")
+        runType 'client'
         // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
         systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         programArguments.addAll '--username', 'Dev2'
@@ -128,7 +130,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
-    // implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
+    implementation "me.shedaniel:RoughlyEnoughItems-neoforge:${rei_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -37,7 +37,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public static void onBlockToolModification(BlockEvent.BlockToolModificationEvent event) {
-        if (event.getToolAction().equals(ToolActions.AXE_STRIP)) {
+        if (event.getItemAbility().equals(ItemAbilities.AXE_STRIP)) {
             BlockState state = ModBlocks.getAxeStrippingState(event.getState());
             if (state != null && !event.isSimulated()) {
                 event.setFinalState(state);
