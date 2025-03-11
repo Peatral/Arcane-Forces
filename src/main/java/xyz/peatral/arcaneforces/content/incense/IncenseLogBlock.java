@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 public class IncenseLogBlock extends RotatedPillarBlock {
     public static final EnumProperty<State> STATE = EnumProperty.create("state", State.class);
     public static final BooleanProperty PLACED_BY_PLAYER = BooleanProperty.create("placed_by_player");
-    public IncenseLogBlock() {
-        super(BlockBehaviour.Properties.of()
+    public IncenseLogBlock(BlockBehaviour.Properties properties) {
+        super(properties
                 .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MapColor.WOOD : MapColor.PODZOL)
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F)

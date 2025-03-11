@@ -60,32 +60,32 @@ public class ModRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(RecipeOutput pRecipeOutput) {
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.OLIBANUM_WOOD.block().get(), 3))
-                .define('L', ModBlocks.OLIBANUM_LOG.block().get())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.OLIBANUM_WOOD.get(), 3))
+                .define('L', ModBlocks.OLIBANUM_LOG.get())
                 .pattern("LL")
                 .pattern("LL")
-                .unlockedBy(getHasName(ModBlocks.OLIBANUM_LOG.block().get()), has(ModBlocks.OLIBANUM_LOG.block().get()))
+                .unlockedBy(getHasName(ModBlocks.OLIBANUM_LOG.get()), has(ModBlocks.OLIBANUM_LOG.get()))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "olibanum_wood"));
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.STRIPPED_OLIBANUM_WOOD.block().get(), 3))
-                .define('L', ModBlocks.STRIPPED_OLIBANUM_LOG.block().get())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.STRIPPED_OLIBANUM_WOOD.get(), 3))
+                .define('L', ModBlocks.STRIPPED_OLIBANUM_LOG.get())
                 .pattern("LL")
                 .pattern("LL")
-                .unlockedBy(getHasName(ModBlocks.STRIPPED_OLIBANUM_LOG.block().get()), has(ModBlocks.STRIPPED_OLIBANUM_LOG.block().get()))
+                .unlockedBy(getHasName(ModBlocks.STRIPPED_OLIBANUM_LOG.get()), has(ModBlocks.STRIPPED_OLIBANUM_LOG.get()))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "stripped_olibanum_wood"));
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.MYRRH_WOOD.block().get(), 3))
-                .define('L', ModBlocks.MYRRH_LOG.block().get())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.MYRRH_WOOD.get(), 3))
+                .define('L', ModBlocks.MYRRH_LOG.get())
                 .pattern("LL")
                 .pattern("LL")
-                .unlockedBy(getHasName(ModBlocks.MYRRH_LOG.block().get()), has(ModBlocks.MYRRH_LOG.block().get()))
+                .unlockedBy(getHasName(ModBlocks.MYRRH_LOG.get()), has(ModBlocks.MYRRH_LOG.get()))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_wood"));
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.STRIPPED_MYRRH_WOOD.block().get(), 3))
-                .define('L', ModBlocks.STRIPPED_MYRRH_LOG.block().get())
+                .shaped(RecipeCategory.BUILDING_BLOCKS, new ItemStack(ModBlocks.STRIPPED_MYRRH_WOOD.get(), 3))
+                .define('L', ModBlocks.STRIPPED_MYRRH_LOG.get())
                 .pattern("LL")
                 .pattern("LL")
-                .unlockedBy(getHasName(ModBlocks.STRIPPED_MYRRH_LOG.block().get()), has(ModBlocks.STRIPPED_MYRRH_LOG.block().get()))
+                .unlockedBy(getHasName(ModBlocks.STRIPPED_MYRRH_LOG.get()), has(ModBlocks.STRIPPED_MYRRH_LOG.get()))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "stripped_myrrh_wood"));
 
         ShapedRecipeBuilder
@@ -99,7 +99,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "ritual_dagger"));
 
         ShapelessRecipeBuilder
-                .shapeless(RecipeCategory.DECORATIONS, ModBlocks.INCENSE_STICK.block().get())
+                .shapeless(RecipeCategory.DECORATIONS, ModBlocks.INCENSE_STICK.get())
                 .requires(Blocks.BAMBOO)
                 .requires(ModItems.FRAGRANT_RESIN.get())
                 .unlockedBy(getHasName(Items.BAMBOO), has(Items.BAMBOO))
@@ -108,9 +108,9 @@ public class ModRecipeProvider extends RecipeProvider {
 
         tappingRecipe(
                 "olibanum_resin",
-                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.RESIN),
+                ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.RESIN),
                 List.of(IncenseLogBlock.STATE),
-                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
+                ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
                 new ItemStack(ModItems.FRAGRANT_RESIN.get()),
                 1.0f,
@@ -119,9 +119,9 @@ public class ModRecipeProvider extends RecipeProvider {
         );
         tappingRecipe(
                 "myrrh_resin",
-                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.RESIN),
+                ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.RESIN),
                 List.of(IncenseLogBlock.STATE),
-                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
+                ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
                 new ItemStack(ModItems.FRAGRANT_RESIN.get()),
                 1.0f,
@@ -131,9 +131,9 @@ public class ModRecipeProvider extends RecipeProvider {
 
         tappingRecipe(
                 "olibanum_scarred",
-                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
+                ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
-                ModBlocks.OLIBANUM_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
+                ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
                 new ItemStack(ModItems.FRAGRANT_RESIN.get()),
                 0.05f,
@@ -142,9 +142,9 @@ public class ModRecipeProvider extends RecipeProvider {
         );
         tappingRecipe(
                 "myrrh_scarred",
-                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
+                ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.DEFAULT),
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
-                ModBlocks.MYRRH_LOG.block().get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
+                ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
                 new ItemStack(ModItems.FRAGRANT_RESIN.get()),
                 0.05f,

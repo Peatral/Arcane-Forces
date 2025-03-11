@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.BlockHitResult;
@@ -19,8 +20,8 @@ import org.jetbrains.annotations.Nullable;
 import xyz.peatral.arcaneforces.ModBlockEntities;
 
 public class BellRingerBlock extends Block implements EntityBlock {
-    public BellRingerBlock() {
-        super(Properties.of()
+    public BellRingerBlock(BlockBehaviour.Properties properties) {
+        super(properties
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F)
                 .sound(SoundType.WOOD)
@@ -52,13 +53,13 @@ public class BellRingerBlock extends Block implements EntityBlock {
     @SuppressWarnings("unchecked")
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == ModBlockEntities.BELL_RINGER.get() ? (BlockEntityTicker<T>) BellRingerBlockEntity::tick : null;
+        return type == ModBlockEntities.BELL_RINGER.get() ? BellRingerBlockEntity::tick : null;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new BellRingerBlockEntity(pPos, pState);
+        return new BellRingerBlockEntity(ModBlockEntities.BELL_RINGER.get(), pPos, pState);
     }
 
     @Override

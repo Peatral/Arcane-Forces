@@ -1,0 +1,17 @@
+{
+  "feature": "arcaneforces:myrrh",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "arcaneforces:myrrh_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    }
+  ]
+}

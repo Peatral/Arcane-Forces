@@ -9,9 +9,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BellBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import xyz.peatral.arcaneforces.ModBlockEntities;
 
 import java.util.*;
 
@@ -20,8 +20,8 @@ public class BellRingerBlockEntity extends BlockEntity {
 
     private int timer = 0;
 
-    public BellRingerBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.BELL_RINGER.get(), pPos, pBlockState);
+    public BellRingerBlockEntity(BlockEntityType<BellRingerBlockEntity> type, BlockPos pPos, BlockState pBlockState) {
+        super(type, pPos, pBlockState);
     }
 
 

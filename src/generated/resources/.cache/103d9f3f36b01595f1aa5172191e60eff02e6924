@@ -1,4 +1,4 @@
-// 1.21	2024-06-30T18:38:01.794871029	Registries
+// 1.21.1	2025-03-11T00:50:04.387334	Registries
 c4265b1521052138860123a55558a9a42952c93d data/arcaneforces/damage_type/death_curse.json
 be8b8e3a230091bc14e55afec8e91a27bf32e1b5 data/arcaneforces/damage_type/ritual_sacrifice.json
 ed88da69fe31d503b00b99b2f844ff6fd8dbad14 data/arcaneforces/enchantment/death_curse.json
@@ -10,5 +10,7 @@ c59ec5d0f5191a6bcdfe92b499cb5867bd281dbe data/arcaneforces/neoforge/biome_modifi
 36cbb3126cdf34177053b850dea18e702df2c6fb data/arcaneforces/worldgen/configured_feature/olibanum.json
 13270339ef9f475bf9abef32ac471ace277e24e4 data/arcaneforces/worldgen/configured_feature/trees_fragrant_desert.json
 987b8c1dc18e57dcb97f51c74038e1a72a6d2e54 data/arcaneforces/worldgen/placed_feature/myrrh.json
+2f947ed66628ec48b90ddfa558c917ea6ceb383d data/arcaneforces/worldgen/placed_feature/myrrh_checked.json
 ca77c4f06fcbca76b4e6bb6e69bd25b158dea66d data/arcaneforces/worldgen/placed_feature/olibanum.json
+bf9ee97a21ca64bd250af287f1e6690d7485ca2e data/arcaneforces/worldgen/placed_feature/olibanum_checked.json
 fd306b186f5731960a5bc414eb1d55d4f7ce1d58 data/arcaneforces/worldgen/placed_feature/trees_fragrant_desert.json

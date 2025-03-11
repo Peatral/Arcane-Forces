@@ -11,11 +11,20 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import xyz.peatral.arcaneforces.content.magic.spells.EnchantmentSpellEffect;
 import xyz.peatral.arcaneforces.content.magic.spells.Spell;
 
+import static xyz.peatral.arcaneforces.Main.REGISTRATE;
+
 public class ModEnchantments {
     public static final ResourceKey<Enchantment> POISON_CURSE = key("poison_curse");
     public static final ResourceKey<Enchantment> FIRE_CURSE = key("fire_curse");
     public static final ResourceKey<Enchantment> DEATH_CURSE = key("death_curse");
     public static final ResourceKey<Enchantment> FLIGHT_BLESSING = key("flight_blessing");
+
+    static {
+        REGISTRATE.get().addLang("enchantment", FIRE_CURSE.location(), "Curse of Fire");
+        REGISTRATE.get().addLang("enchantment", DEATH_CURSE.location(), "Curse of Death");
+        REGISTRATE.get().addLang("enchantment", POISON_CURSE.location(), "Curse of Poison");
+        REGISTRATE.get().addLang("enchantment", FLIGHT_BLESSING.location(), "Blessing of Flight");
+    }
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         registerSimple(context, POISON_CURSE, ModSpells.POISON);

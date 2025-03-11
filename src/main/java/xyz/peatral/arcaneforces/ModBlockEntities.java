@@ -1,27 +1,14 @@
 package xyz.peatral.arcaneforces;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import xyz.peatral.arcaneforces.content.shrines.BellRingerBlockEntity;
 
-import java.util.function.Supplier;
+import static xyz.peatral.arcaneforces.Main.REGISTRATE;
 
 public class ModBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES =
-            DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, Main.MOD_ID);
 
-    public static final Supplier<BlockEntityType<BellRingerBlockEntity>> BELL_RINGER = BLOCK_ENTITY_TYPES.register(
-            "bell_ringer",
-            () -> BlockEntityType.Builder.of(
-                            BellRingerBlockEntity::new,
-                            ModBlocks.BELL_RINGER.block().get().defaultBlockState().getBlock()
-                    )
-                    .build(null)
-    );
+    public static final BlockEntityEntry<BellRingerBlockEntity> BELL_RINGER = REGISTRATE.get().blockEntity("bell_ringer", BellRingerBlockEntity::new).validBlock(ModBlocks.BELL_RINGER).register();
 
-    public static void register(IEventBus eventBus) {
-        BLOCK_ENTITY_TYPES.register(eventBus);
+    public static void register() {
     }
 }

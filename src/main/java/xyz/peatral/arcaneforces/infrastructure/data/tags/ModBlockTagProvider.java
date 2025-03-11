@@ -21,20 +21,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         tag(BlockTags.SAPLINGS)
                 .add(
-                        ModBlocks.OLIBANUM_SAPLING.block().get(),
-                        ModBlocks.MYRRH_SAPLING.block().get()
+                        ModBlocks.OLIBANUM_SAPLING.get(),
+                        ModBlocks.MYRRH_SAPLING.get()
                 );
         tag(ModTags.Blocks.OLIBANUM_LOGS).add(
-                ModBlocks.OLIBANUM_LOG.block().get(),
-                ModBlocks.OLIBANUM_WOOD.block().get(),
-                ModBlocks.STRIPPED_OLIBANUM_LOG.block().get(),
-                ModBlocks.STRIPPED_OLIBANUM_WOOD.block().get()
+                ModBlocks.OLIBANUM_LOG.get(),
+                ModBlocks.OLIBANUM_WOOD.get(),
+                ModBlocks.STRIPPED_OLIBANUM_LOG.get(),
+                ModBlocks.STRIPPED_OLIBANUM_WOOD.get()
         );
         tag(ModTags.Blocks.MYRRH_LOGS).add(
-                ModBlocks.MYRRH_LOG.block().get(),
-                ModBlocks.MYRRH_WOOD.block().get(),
-                ModBlocks.STRIPPED_MYRRH_LOG.block().get(),
-                ModBlocks.STRIPPED_MYRRH_WOOD.block().get()
+                ModBlocks.MYRRH_LOG.get(),
+                ModBlocks.MYRRH_WOOD.get(),
+                ModBlocks.STRIPPED_MYRRH_LOG.get(),
+                ModBlocks.STRIPPED_MYRRH_WOOD.get()
         );
         tag(ModTags.Blocks.INCENSE_LOGS)
                 .addTag(ModTags.Blocks.OLIBANUM_LOGS)
@@ -42,17 +42,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.LOGS_THAT_BURN).addTag(ModTags.Blocks.INCENSE_LOGS);
         tag(BlockTags.LEAVES)
                 .add(
-                        ModBlocks.OLIBANUM_LEAVES.block().get(),
-                        ModBlocks.MYRRH_LEAVES.block().get()
+                        ModBlocks.OLIBANUM_LEAVES.get(),
+                        ModBlocks.MYRRH_LEAVES.get()
                 );
         tag(BlockTags.MINEABLE_WITH_HOE)
                 .add(
-                        ModBlocks.OLIBANUM_LEAVES.block().get(),
-                        ModBlocks.MYRRH_LEAVES.block().get()
+                        ModBlocks.OLIBANUM_LEAVES.get(),
+                        ModBlocks.MYRRH_LEAVES.get()
                 );
         tag(BlockTags.CANDLES)
                 .add(
-                        ModBlocks.INCENSE_STICK.block().get()
+                        ModBlocks.INCENSE_STICK.get()
                 );
     }
 }

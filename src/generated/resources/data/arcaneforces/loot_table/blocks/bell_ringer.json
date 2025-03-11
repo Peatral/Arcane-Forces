@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "arcaneforces:bell_ringer"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "arcaneforces:blocks/bell_ringer"
+}

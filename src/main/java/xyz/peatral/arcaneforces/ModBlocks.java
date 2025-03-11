@@ -1,145 +1,77 @@
 package xyz.peatral.arcaneforces;
 
 import com.google.common.collect.ImmutableMap;
+import com.tterrag.registrate.providers.DataGenContext;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
+import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import xyz.peatral.arcaneforces.content.shrines.BellRingerBlock;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.worldgen.ModTrees;
+import xyz.peatral.arcaneforces.infrastructure.data.ModBlockStateProvider;
 
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
+
+import static xyz.peatral.arcaneforces.Main.REGISTRATE;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Main.MOD_ID)
 public class ModBlocks {
 
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Main.MOD_ID);
+    public static final BlockEntry<SaplingBlock> OLIBANUM_SAPLING = sapling("olibanum_sapling", ModTrees.OLIBANUM, "Olibanum Sapling");
+    public static final BlockEntry<SaplingBlock> MYRRH_SAPLING = sapling("myrrh_sapling", ModTrees.MYRRH, "Myrrh Sapling");
 
+    public static final BlockEntry<LeavesBlock> OLIBANUM_LEAVES = leaves("olibanum_leaves", OLIBANUM_SAPLING, "Olibanum Leaves");
+    public static final BlockEntry<LeavesBlock> MYRRH_LEAVES = leaves("myrrh_leaves", MYRRH_SAPLING, "Myrrh Leaves");
 
-    public static final BlockWithItem<SaplingBlock, BlockItem> OLIBANUM_SAPLING = registerBlockAndItem("olibanum_sapling", () -> new SaplingBlock(
-            ModTrees.OLIBANUM,
-            BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
-                    .noCollission()
-                    .randomTicks()
-                    .instabreak()
-                    .sound(SoundType.GRASS)
-                    .pushReaction(PushReaction.DESTROY)),
-            block -> new BlockItem(block, new Item.Properties())
-    );
+    public static final BlockEntry<IncenseLogBlock> OLIBANUM_LOG = incenseLog("olibanum_log", "Olibanum Log");
+    public static final BlockEntry<RotatedPillarBlock> OLIBANUM_WOOD = woodBlock("olibanum_wood", OLIBANUM_LOG,  "Olibanum Wood");
+    public static final BlockEntry<RotatedPillarBlock> STRIPPED_OLIBANUM_LOG = log("stripped_olibanum_log", "Stripped Olibanum Log");
+    public static final BlockEntry<RotatedPillarBlock> STRIPPED_OLIBANUM_WOOD = woodBlock("stripped_olibanum_wood", STRIPPED_OLIBANUM_LOG, "Stripped Olibanum Wood");
 
-    public static final BlockWithItem<SaplingBlock, BlockItem> MYRRH_SAPLING = registerBlockAndItem("myrrh_sapling", () -> new SaplingBlock(
-            ModTrees.MYRRH,
-            BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.PLANT)
-                    .noCollission()
-                    .randomTicks()
-                    .instabreak()
-                    .sound(SoundType.GRASS)
-                    .pushReaction(PushReaction.DESTROY)),
-            block -> new BlockItem(block, new Item.Properties())
-    );
+    public static final BlockEntry<IncenseLogBlock> MYRRH_LOG = incenseLog("myrrh_log","Myrrh Log");
+    public static final BlockEntry<RotatedPillarBlock> MYRRH_WOOD = woodBlock("myrrh_wood", MYRRH_LOG, "Myrrh Wood");
+    public static final BlockEntry<RotatedPillarBlock> STRIPPED_MYRRH_LOG = log("stripped_myrrh_log", "Stripped Myrrh Log");
+    public static final BlockEntry<RotatedPillarBlock> STRIPPED_MYRRH_WOOD = woodBlock("stripped_myrrh_wood", STRIPPED_MYRRH_LOG, "Stripped Myrrh Wood");
 
-    public static final BlockWithItem<LeavesBlock, BlockItem> OLIBANUM_LEAVES = registerBlockAndItem(
-            "olibanum_leaves",
-            leaves(SoundType.GRASS),
-            block -> new BlockItem(block, new Item.Properties())
-    );
-    public static final BlockWithItem<LeavesBlock, BlockItem> MYRRH_LEAVES = registerBlockAndItem(
-            "myrrh_leaves",
-            leaves(SoundType.GRASS),
-            block -> new BlockItem(block, new Item.Properties())
-    );
-    public static final BlockWithItem<BellRingerBlock, BlockItem> BELL_RINGER = registerBlockAndItem(
-            "bell_ringer",
-            BellRingerBlock::new,
-            block -> new BlockItem(block, new Item.Properties())
-    );
-
-
-    public static final BlockWithItem<IncenseLogBlock, BlockItem> OLIBANUM_LOG = registerBlockAndItem("olibanum_log", IncenseLogBlock::new, block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> OLIBANUM_WOOD = registerBlockAndItem("olibanum_wood", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> STRIPPED_OLIBANUM_LOG = registerBlockAndItem("stripped_olibanum_log", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> STRIPPED_OLIBANUM_WOOD = registerBlockAndItem("stripped_olibanum_wood", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<IncenseLogBlock, BlockItem> MYRRH_LOG = registerBlockAndItem("myrrh_log", IncenseLogBlock::new, block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> MYRRH_WOOD = registerBlockAndItem("myrrh_wood", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> STRIPPED_MYRRH_LOG = registerBlockAndItem("stripped_myrrh_log", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-    public static final BlockWithItem<RotatedPillarBlock, BlockItem> STRIPPED_MYRRH_WOOD = registerBlockAndItem("stripped_myrrh_wood", log(MapColor.WOOD, MapColor.PODZOL), block -> new BlockItem(block, new Item.Properties()));
-
-    public static final BlockWithItem<CandleBlock, BlockItem> INCENSE_STICK = registerBlockAndItem("incense_stick",
-            () -> new CandleBlock(BlockBehaviour.Properties.of()
+    public static final BlockEntry<CandleBlock> INCENSE_STICK = REGISTRATE.get().block(
+            "incense_stick",
+            properties -> new CandleBlock(properties
                     .mapColor(MapColor.WOOD)
                     .noOcclusion()
                     .strength(0.1F)
                     .sound(SoundType.CANDLE)
                     .lightLevel(CandleBlock.LIGHT_EMISSION)
                     .pushReaction(PushReaction.DESTROY)
-            ), block -> new BlockItem(block, new Item.Properties()));
+            ))
+            .blockstate((context, provider) -> ModBlockStateProvider.sticksWithItem(provider, context.get(), context.getId()))
+            .lang("Incense Stick")
+            .loot((lootTables, candleBlock) -> lootTables.add(candleBlock, lootTables.createCandleDrops(candleBlock)))
+            .item().defaultModel().build()
+            .register();
 
-    @SubscribeEvent
-    public static void blockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((pState, pLevel, pPos, pTintIndex) -> pLevel != null && pPos != null
-                        ? BiomeColors.getAverageFoliageColor(pLevel, pPos)
-                        : FoliageColor.getDefaultColor(),
-                OLIBANUM_LEAVES.block.get(),
-                MYRRH_LEAVES.block.get()
-        );
-    }
+    public static final BlockEntry<BellRingerBlock> BELL_RINGER = REGISTRATE.get().block("bell_ringer", BellRingerBlock::new).defaultLoot().item().build().register();
 
-    @SubscribeEvent
-    public static void itemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((pStack, pTintIndex) -> FoliageColor.getDefaultColor(),
-                OLIBANUM_LEAVES.item.get(),
-                MYRRH_LEAVES.item.get()
-        );
-    }
 
-    public static BlockState getAxeStrippingState(BlockState originalState) {
-        // TODO: This should be improved
-        Map<Block, Block> STRIPPABLES = new ImmutableMap.Builder<Block, Block>()
-                .put(OLIBANUM_WOOD.block.get(), STRIPPED_OLIBANUM_WOOD.block.get())
-                .put(OLIBANUM_LOG.block.get(), STRIPPED_OLIBANUM_LOG.block.get())
-                .put(MYRRH_WOOD.block.get(), STRIPPED_MYRRH_WOOD.block.get())
-                .put(MYRRH_LOG.block.get(), STRIPPED_MYRRH_LOG.block.get())
-                .build();
 
-        Block block = STRIPPABLES.get(originalState.getBlock());
-        return block != null ? block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, originalState.getValue(RotatedPillarBlock.AXIS)) : null;
-    }
-
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
-
-    private static <BLOCK extends Block, ITEM extends BlockItem> BlockWithItem<BLOCK, ITEM> registerBlockAndItem(
-            String name,
-            Supplier<BLOCK> blockFactory,
-            Function<? super BLOCK, ITEM> itemFactory) {
-        DeferredHolder<Block, BLOCK> block = BLOCKS.register(name, blockFactory);
-        DeferredHolder<Item, ITEM> item = ModItems.ITEMS.register(name, () -> itemFactory.apply(block.get()));
-        return new BlockWithItem<>(block, item);
-    }
-
-    private static Supplier<RotatedPillarBlock> log(MapColor pTopMapColor, MapColor pSideMapColor) {
-        return () -> new RotatedPillarBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? pTopMapColor : pSideMapColor)
+    public static final NonNullFunction<BlockBehaviour.Properties, RotatedPillarBlock> logBlock() {
+        return (properties) -> new RotatedPillarBlock(
+                properties
+                        .mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MapColor.WOOD : MapColor.PODZOL)
                         .instrument(NoteBlockInstrument.BASS)
                         .strength(2.0F)
                         .sound(SoundType.WOOD)
@@ -147,23 +79,103 @@ public class ModBlocks {
         );
     }
 
-    private static Supplier<LeavesBlock> leaves(SoundType pSoundType) {
-        return () -> new LeavesBlock(
-                BlockBehaviour.Properties.of()
-                        .mapColor(MapColor.PLANT)
-                        .strength(0.2F)
-                        .randomTicks()
-                        .sound(pSoundType)
-                        .noOcclusion()
-                        .isSuffocating((pState, pLevel, pPos) -> false)
-                        .isViewBlocking((pState, pLevel, pPos) -> false)
-                        .ignitedByLava()
-                        .pushReaction(PushReaction.DESTROY)
-                        .isRedstoneConductor((pState, pLevel, pPos) -> false)
+    public static final <T extends Block> BlockEntry<T> block(String name, NonNullFunction<BlockBehaviour.Properties, T> factory, String translation) {
+        return REGISTRATE.get().block(name, factory).lang(translation).defaultLoot().item().build().register();
+    }
+
+    public static final <T extends Block> BlockEntry<T> block(String name, NonNullFunction<BlockBehaviour.Properties, T> factory, NonNullBiConsumer<DataGenContext<Block, T>, RegistrateBlockstateProvider> state, String translation) {
+        return REGISTRATE.get()
+                .block(name, factory)
+                .lang(translation)
+                .blockstate(state)
+                .defaultLoot()
+                .item().build()
+                .register();
+    }
+
+    public static final BlockEntry<SaplingBlock> sapling(String name, TreeGrower grower, String translation) {
+        return block(
+                name,
+                properties -> new SaplingBlock(
+                        grower,
+                        properties
+                                .mapColor(MapColor.PLANT)
+                                .noCollission()
+                                .randomTicks()
+                                .instabreak()
+                                .sound(SoundType.GRASS)
+                                .pushReaction(PushReaction.DESTROY)
+                ),
+                (context, provider) -> ModBlockStateProvider.crossWithItem(provider, context.get()),
+                translation
         );
     }
 
-    public record BlockWithItem<BLOCK extends Block, ITEM extends BlockItem>(DeferredHolder<Block, BLOCK> block,
-                                                                             DeferredHolder<Item, ITEM> item) {
+    public static final BlockEntry<IncenseLogBlock> incenseLog(String name, String translation) {
+        return block(name, IncenseLogBlock::new, (context, provider) -> ModBlockStateProvider.incenselogBlockWithItem(provider, context.getId(), context.get()), translation);
+    }
+
+    public static final BlockEntry<RotatedPillarBlock> log(String name, String translation) {
+        return block(name, logBlock(), (context, provider) -> ModBlockStateProvider.logBlockWithItem(provider, context.get()), translation);
+    }
+
+    public static final BlockEntry<RotatedPillarBlock> woodBlock(String name, NonNullSupplier<? extends RotatedPillarBlock> log, String translation) {
+        return block(name, logBlock(), (context, provider) -> ModBlockStateProvider.woodBlockWithItem(provider, context.get(), log.get()), translation);
+    }
+
+    private static BlockEntry<LeavesBlock> leaves(String name, NonNullSupplier<SaplingBlock> saplingBlock, String translation) {
+        return REGISTRATE.get()
+                .block(name, properties -> new LeavesBlock(
+                    properties
+                            .mapColor(MapColor.PLANT)
+                            .strength(0.2F)
+                            .randomTicks()
+                            .sound(SoundType.GRASS)
+                            .noOcclusion()
+                            .isSuffocating((pState, pLevel, pPos) -> false)
+                            .isViewBlocking((pState, pLevel, pPos) -> false)
+                            .ignitedByLava()
+                            .pushReaction(PushReaction.DESTROY)
+                            .isRedstoneConductor((pState, pLevel, pPos) -> false)
+                ))
+                .blockstate((context, provider) -> ModBlockStateProvider.leavesWithItem(provider, context.get()))
+                .lang(translation)
+                .loot((lootTables, block) -> lootTables.add(block, lootTables.createLeavesDrops(block, saplingBlock.get(), 0.05F, 0.0625F, 0.083333336F, 0.1F)))
+                .item().build()
+                .register();
+    }
+
+    @SubscribeEvent
+    public static void blockColors(RegisterColorHandlersEvent.Block event) {
+        event.register((pState, pLevel, pPos, pTintIndex) -> pLevel != null && pPos != null
+                        ? BiomeColors.getAverageFoliageColor(pLevel, pPos)
+                        : FoliageColor.getDefaultColor(),
+                OLIBANUM_LEAVES.get(),
+                MYRRH_LEAVES.get()
+        );
+    }
+
+    @SubscribeEvent
+    public static void itemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((pStack, pTintIndex) -> FoliageColor.getDefaultColor(),
+                OLIBANUM_LEAVES.get(),
+                MYRRH_LEAVES.get()
+        );
+    }
+
+    public static BlockState getAxeStrippingState(BlockState originalState) {
+        // TODO: This should be improved
+        Map<Block, Block> STRIPPABLES = new ImmutableMap.Builder<Block, Block>()
+                .put(OLIBANUM_WOOD.get(), STRIPPED_OLIBANUM_WOOD.get())
+                .put(OLIBANUM_LOG.get(), STRIPPED_OLIBANUM_LOG.get())
+                .put(MYRRH_WOOD.get(), STRIPPED_MYRRH_WOOD.get())
+                .put(MYRRH_LOG.get(), STRIPPED_MYRRH_LOG.get())
+                .build();
+
+        Block block = STRIPPABLES.get(originalState);
+        return block != null ? block.defaultBlockState().setValue(RotatedPillarBlock.AXIS, originalState.getValue(RotatedPillarBlock.AXIS)) : null;
+    }
+
+    public static void register() {
     }
 }

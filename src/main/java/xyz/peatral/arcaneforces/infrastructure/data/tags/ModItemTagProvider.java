@@ -28,20 +28,20 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 );
         tag(ItemTags.SAPLINGS)
                 .add(
-                        ModBlocks.OLIBANUM_SAPLING.item().get(),
-                        ModBlocks.MYRRH_SAPLING.item().get()
+                        ModBlocks.OLIBANUM_SAPLING.get().asItem(),
+                        ModBlocks.MYRRH_SAPLING.get().asItem()
                 );
         tag(ModTags.Items.OLIBANUM_LOGS).add(
-                ModBlocks.OLIBANUM_LOG.item().get(),
-                ModBlocks.OLIBANUM_WOOD.item().get(),
-                ModBlocks.STRIPPED_OLIBANUM_LOG.item().get(),
-                ModBlocks.STRIPPED_OLIBANUM_WOOD.item().get()
+                ModBlocks.OLIBANUM_LOG.get().asItem(),
+                ModBlocks.OLIBANUM_WOOD.get().asItem(),
+                ModBlocks.STRIPPED_OLIBANUM_LOG.get().asItem(),
+                ModBlocks.STRIPPED_OLIBANUM_WOOD.get().asItem()
         );
         tag(ModTags.Items.MYRRH_LOGS).add(
-                ModBlocks.MYRRH_LOG.item().get(),
-                ModBlocks.MYRRH_WOOD.item().get(),
-                ModBlocks.STRIPPED_MYRRH_LOG.item().get(),
-                ModBlocks.STRIPPED_MYRRH_WOOD.item().get()
+                ModBlocks.MYRRH_LOG.get().asItem(),
+                ModBlocks.MYRRH_WOOD.get().asItem(),
+                ModBlocks.STRIPPED_MYRRH_LOG.get().asItem(),
+                ModBlocks.STRIPPED_MYRRH_WOOD.get().asItem()
         );
         tag(ModTags.Items.INCENSE_LOGS)
                 .addTag(ModTags.Items.OLIBANUM_LOGS)
@@ -49,12 +49,12 @@ public class ModItemTagProvider extends ItemTagsProvider {
         tag(ItemTags.LOGS_THAT_BURN).addTag(ModTags.Items.INCENSE_LOGS);
         tag(ItemTags.LEAVES)
                 .add(
-                        ModBlocks.OLIBANUM_LEAVES.item().get(),
-                        ModBlocks.MYRRH_LEAVES.item().get()
+                        ModBlocks.OLIBANUM_LEAVES.get().asItem(),
+                        ModBlocks.MYRRH_LEAVES.get().asItem()
                 );
         tag(ItemTags.CANDLES)
                 .add(
-                        ModBlocks.INCENSE_STICK.item().get()
+                        ModBlocks.INCENSE_STICK.get().asItem()
                 );
     }
 }

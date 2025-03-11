@@ -6,7 +6,6 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -29,9 +28,9 @@ public class ModTreeFeatures {
                 OLIBANUM,
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
-                        BlockStateProvider.simple(ModBlocks.OLIBANUM_LOG.block().get()),
+                        BlockStateProvider.simple(ModBlocks.OLIBANUM_LOG.get()),
                         new BendingTrunkPlacer(2, 1, 1, 2, ConstantInt.of(1)),
-                        BlockStateProvider.simple(ModBlocks.OLIBANUM_LEAVES.block().get()),
+                        BlockStateProvider.simple(ModBlocks.OLIBANUM_LEAVES.get()),
                         new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 1),
                         new TwoLayersFeatureSize(1, 0, 1)
                 )
@@ -45,9 +44,9 @@ public class ModTreeFeatures {
                 MYRRH,
                 Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
-                        BlockStateProvider.simple(ModBlocks.MYRRH_LOG.block().get()),
+                        BlockStateProvider.simple(ModBlocks.MYRRH_LOG.get()),
                         new StraightTrunkPlacer(2, 1, 0),
-                        BlockStateProvider.simple(ModBlocks.MYRRH_LEAVES.block().get()),
+                        BlockStateProvider.simple(ModBlocks.MYRRH_LEAVES.get()),
                         new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 1),
                         new TwoLayersFeatureSize(1, 0, 1)
                 )

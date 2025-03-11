@@ -24,8 +24,8 @@ public class ModTreePlacements {
         Holder<ConfiguredFeature<?, ?>> olibanumHolder = holdergetter.getOrThrow(ModTreeFeatures.OLIBANUM);
         Holder<ConfiguredFeature<?, ?>> myrrhHolder = holdergetter.getOrThrow(ModTreeFeatures.MYRRH);
 
-        PlacementUtils.register(context, OLIBANUM_CHECKED, olibanumHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.OLIBANUM_SAPLING.block().get()));
-        PlacementUtils.register(context, MYRRH_CHECKED, myrrhHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.MYRRH_SAPLING.block().get()));
+        PlacementUtils.register(context, OLIBANUM_CHECKED, olibanumHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.OLIBANUM_SAPLING.get()));
+        PlacementUtils.register(context, MYRRH_CHECKED, myrrhHolder, PlacementUtils.filteredByBlockSurvival(ModBlocks.MYRRH_SAPLING.get()));
         PlacementUtils.register(context, OLIBANUM, olibanumHolder);
         PlacementUtils.register(context, MYRRH, myrrhHolder);
     }

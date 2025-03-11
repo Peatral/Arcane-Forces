@@ -70,11 +70,6 @@ public class DatagenHandler {
         generator.addProvider(event.includeClient(), new ModEnchantmentTagProvider(output, modLookupProvider, Main.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModDamageTypeTagProvider(output, modLookupProvider, Main.MOD_ID, existingFileHelper));
 
-        generator.addProvider(event.includeClient(), new ModLootTableProvider(output, lookupProvider));
-
-        generator.addProvider(event.includeClient(), new ModItemModelProvider(output, Main.MOD_ID, existingFileHelper));
-        generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, Main.MOD_ID, existingFileHelper));
-        generator.addProvider(event.includeClient(), new ModLanguageProvider(output, Main.MOD_ID, "en_us"));
         generator.addProvider(event.includeClient(), new ModRecipeProvider(output, lookupProvider));
     }
 
