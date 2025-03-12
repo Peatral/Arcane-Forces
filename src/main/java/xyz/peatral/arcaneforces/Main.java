@@ -2,6 +2,7 @@ package xyz.peatral.arcaneforces;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -26,5 +27,9 @@ public class Main {
         ModDataAttachments.register();
         ModRecipeTypes.register(modEventBus);
         ModLanguageProvider.register();
+    }
+
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }
