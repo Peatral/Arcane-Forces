@@ -9,6 +9,14 @@ public class Graph<T> {
     private Set<T> nodes = new HashSet<>();
     private Map<T, Set<T>> adjacency = new HashMap<>();
 
+    public Graph() {
+    }
+
+    public Graph(Set<T> nodes, Map<T, Set<T>> adjacency) {
+        this.nodes = nodes;
+        this.adjacency = adjacency;
+    }
+
     public boolean addNode(T node) {
         return nodes.add(node);
     }
@@ -85,6 +93,10 @@ public class Graph<T> {
 
     public Map<T, Set<T>> getAdjacency() {
         return adjacency;
+    }
+
+    public Set<T> getNodes() {
+        return nodes;
     }
 }
 

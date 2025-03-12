@@ -5,6 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -17,14 +18,18 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.util.thread.SidedThreadGroups;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 import xyz.peatral.arcaneforces.*;
 import xyz.peatral.arcaneforces.api.events.RankUpEvent;
 import xyz.peatral.arcaneforces.client.gui.toasts.RankupToast;
 import xyz.peatral.arcaneforces.client.gui.tooltip.RankbarTooltip;
 import xyz.peatral.arcaneforces.content.ranking.IRanking;
+import xyz.peatral.arcaneforces.content.shrines.ClientShrineSavedData;
+import xyz.peatral.arcaneforces.content.shrines.GraphDebugger;
 
 import java.util.List;
 import java.util.Optional;
@@ -106,4 +111,33 @@ public class ClientEvents {
         components.add(idx, Either.right(new RankbarTooltip(cap.getAffinityForDisplay(), cap.getRank())));
 
     }
+
+    @SubscribeEvent
+    public static void onLevelUnload(LevelEvent.Unload event) {
+        if (event.getLevel() instanceof ClientLevel level) {
+            ClientShrineSavedData.unloadGraph(level);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onTickPre(ClientTickEvent.Pre event) {
+        onTick( true);
+    }
+
+    @SubscribeEvent
+    public static void onTickPost(ClientTickEvent.Post event) {
+        onTick(false);
+    }
+
+    public static void onTick(boolean isPreEvent) {
+        if (!isGameActive())
+            return;
+
+        GraphDebugger.tick();
+    }
+
+    protected static boolean isGameActive() {
+        return !(Minecraft.getInstance().level == null || Minecraft.getInstance().player == null);
+    }
+
 }

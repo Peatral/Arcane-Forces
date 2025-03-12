@@ -13,6 +13,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import xyz.peatral.arcaneforces.*;
+import xyz.peatral.arcaneforces.content.shrines.ShrineSavedData;
 
 @EventBusSubscriber(modid = Main.MOD_ID)
 public class CommonEvents {
@@ -32,6 +33,14 @@ public class CommonEvents {
     public static void onLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.getEntity().level().isClientSide && event.getEntity() instanceof ServerPlayer player) {
             PacketDistributor.sendToPlayer(player, player.getData(ModDataAttachments.SPELL_SELECTOR));
+            ShrineSavedData.syncToPlayer(player);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (!event.getEntity().level().isClientSide && event.getEntity() instanceof ServerPlayer player) {
+            ShrineSavedData.syncToPlayer(player);
         }
     }
 
