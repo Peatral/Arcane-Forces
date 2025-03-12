@@ -19,8 +19,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 import xyz.peatral.arcaneforces.ModBlockEntities;
 
-public class BellRingerBlock extends Block implements EntityBlock {
-    public BellRingerBlock(BlockBehaviour.Properties properties) {
+public class WaystoneBlock extends Block implements EntityBlock {
+    public WaystoneBlock(BlockBehaviour.Properties properties) {
         super(properties
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F)
@@ -53,20 +53,20 @@ public class BellRingerBlock extends Block implements EntityBlock {
     @SuppressWarnings("unchecked")
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == ModBlockEntities.BELL_RINGER.get() ? BellRingerBlockEntity::tick : null;
+        return type == ModBlockEntities.WAYSTONE.get() ? WaystoneBlockEntity::tick : null;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new BellRingerBlockEntity(ModBlockEntities.BELL_RINGER.get(), pPos, pState);
+        return new WaystoneBlockEntity(ModBlockEntities.WAYSTONE.get(), pPos, pState);
     }
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         BlockEntity entity = pLevel.getBlockEntity(pPos);
-        if (entity instanceof BellRingerBlockEntity bellRingerBlockEntity) {
-            bellRingerBlockEntity.ringBells(pLevel, pPos, pPlayer);
+        if (entity instanceof WaystoneBlockEntity waystoneBlockEntity) {
+            waystoneBlockEntity.ringBells(pLevel, pPos, pPlayer);
         }
         return InteractionResult.SUCCESS;
     }

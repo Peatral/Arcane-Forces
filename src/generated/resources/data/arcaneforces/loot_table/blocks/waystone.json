@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "arcaneforces:bell_ringer"
+          "name": "arcaneforces:waystone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "arcaneforces:blocks/bell_ringer"
+  "random_sequence": "arcaneforces:blocks/waystone"
 }

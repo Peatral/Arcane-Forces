@@ -20,7 +20,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import xyz.peatral.arcaneforces.content.shrines.BellRingerBlock;
+import xyz.peatral.arcaneforces.content.shrines.WaystoneBlock;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.worldgen.ModTrees;
 import xyz.peatral.arcaneforces.infrastructure.data.ModBlockStateProvider;
@@ -64,7 +64,7 @@ public class ModBlocks {
             .item().defaultModel().build()
             .register();
 
-    public static final BlockEntry<BellRingerBlock> BELL_RINGER = REGISTRATE.get().block("bell_ringer", BellRingerBlock::new).defaultLoot().item().build().register();
+    public static final BlockEntry<WaystoneBlock> WAYSTONE = REGISTRATE.get().block("waystone", WaystoneBlock::new).lang("Waystone").defaultLoot().item().build().register();
 
 
 

@@ -15,18 +15,18 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 
-public class BellRingerBlockEntity extends BlockEntity {
+public class WaystoneBlockEntity extends BlockEntity {
     private List<Set<BlockPos>> bells = new ArrayList<>();
 
     private int timer = 0;
 
-    public BellRingerBlockEntity(BlockEntityType<BellRingerBlockEntity> type, BlockPos pPos, BlockState pBlockState) {
+    public WaystoneBlockEntity(BlockEntityType<WaystoneBlockEntity> type, BlockPos pPos, BlockState pBlockState) {
         super(type, pPos, pBlockState);
     }
 
 
 
-    public static void tick(Level level, BlockPos pos, BlockState state, BellRingerBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos pos, BlockState state, WaystoneBlockEntity blockEntity) {
 
     }
 
@@ -44,8 +44,8 @@ public class BellRingerBlockEntity extends BlockEntity {
             for (Pair<BlockPos, Integer> shrine : shrines) {
                 BlockPos shrinePos = shrine.getFirst();
 
-                BellRingerBlockEntity bellRingerBlockEntity = (BellRingerBlockEntity) level.getBlockEntity(shrinePos);
-                if (bellRingerBlockEntity != null) {
+                WaystoneBlockEntity waystoneBlockEntity = (WaystoneBlockEntity) level.getBlockEntity(shrinePos);
+                if (waystoneBlockEntity != null) {
                     addNDistinctPositions(getBells(shrinePos, pLevel, radius), shrine.getSecond(), maxBellsPerShrine);
                 }
             }
@@ -84,12 +84,12 @@ public class BellRingerBlockEntity extends BlockEntity {
     }
 
     public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState blockState, T t) {
-        if (t instanceof BellRingerBlockEntity bellRingerBlockEntity) {
-            if (bellRingerBlockEntity.timer-- > 0 || bellRingerBlockEntity.bells.isEmpty()) {
+        if (t instanceof WaystoneBlockEntity waystoneBlockEntity) {
+            if (waystoneBlockEntity.timer-- > 0 || waystoneBlockEntity.bells.isEmpty()) {
                 return;
             }
 
-            Set<BlockPos> bells = bellRingerBlockEntity.bells.removeFirst();
+            Set<BlockPos> bells = waystoneBlockEntity.bells.removeFirst();
             for (BlockPos bellPos : bells) {
                 if (!level.getBlockState(bellPos).is(Blocks.BELL)) {
                     continue;
@@ -102,7 +102,7 @@ public class BellRingerBlockEntity extends BlockEntity {
                 }
             }
 
-            bellRingerBlockEntity.timer = 15;
+            waystoneBlockEntity.timer = 15;
         }
     }
 }

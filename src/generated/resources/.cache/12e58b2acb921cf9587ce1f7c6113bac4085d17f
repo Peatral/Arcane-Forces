@@ -1,5 +1,4 @@
-// 1.21.1	2025-03-11T01:15:56.6568345	Registrate Provider for arcaneforces [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
-ebb5c3f7e9303887c41343d75d991daaba66793d assets/arcaneforces/blockstates/bell_ringer.json
+// 1.21.1	2025-03-12T17:24:12.7071725	Registrate Provider for arcaneforces [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 cdc00ea81803ba40d39474dfd9d36fdc485d44c9 assets/arcaneforces/blockstates/incense_stick.json
 03d931bd845a9146b82455e470a6a4e809b39371 assets/arcaneforces/blockstates/myrrh_leaves.json
 31a5ce346f26a9f4663bea7f70d0ec7e558a30bc assets/arcaneforces/blockstates/myrrh_log.json
@@ -13,9 +12,9 @@ f99d0ad1a28542a594ad68c84bb26616e45d7cab assets/arcaneforces/blockstates/olibanu
 a4f411943e62c56be2248b1d563ad838b0663d19 assets/arcaneforces/blockstates/stripped_myrrh_wood.json
 6c0d0e344ecab932a8bf7e1bfb8ff589c50224ea assets/arcaneforces/blockstates/stripped_olibanum_log.json
 65c76f140a6c2188a86c9093481458189462d6f6 assets/arcaneforces/blockstates/stripped_olibanum_wood.json
-030eb12cec742342999514a6f840c09992f2c27c assets/arcaneforces/lang/en_ud.json
-3a91d4348bc730ae59d4cf648eb6a8502399934d assets/arcaneforces/lang/en_us.json
-ed2083163697e99d25ac92ca6c4749049119ae2e assets/arcaneforces/models/block/bell_ringer.json
+73235a1c9f62a87275f9d15813ca4cc4e5056455 assets/arcaneforces/blockstates/waystone.json
+b1e2c49c9141e3878957359c6826281e9f30bab2 assets/arcaneforces/lang/en_ud.json
+3eb1c9cd0028683f7eab5837cd66bc1138c3ea07 assets/arcaneforces/lang/en_us.json
 eb42dd510897af76c0837f64b802456af0ff77aa assets/arcaneforces/models/block/incense_stick_four_candles.json
 ea514bf3a6a0f1b7d98f0b7032fddf79d4c1eefc assets/arcaneforces/models/block/incense_stick_four_candles_lit.json
 c6caaa3437955255b352c7b4a8d91ca62df83dab assets/arcaneforces/models/block/incense_stick_one_candle.json
@@ -52,7 +51,7 @@ ff27bdaad8d480785450024033dcff2a7ae66e6a assets/arcaneforces/models/block/stripp
 2ad17c1050b1199e5c94a008082e694bb0482110 assets/arcaneforces/models/block/stripped_olibanum_log_horizontal.json
 7a0b6945e118fca800e698f53afa6fd30f0970fc assets/arcaneforces/models/block/stripped_olibanum_wood.json
 f0bad99ffa28c96e8706f7e764ded58e0f8c1e03 assets/arcaneforces/models/block/stripped_olibanum_wood_horizontal.json
-bd95abc0298f385dde50e3b2b0ec82e5127c6a1c assets/arcaneforces/models/item/bell_ringer.json
+a95a6c36e97db93f88824f04a67de3f77d100cb1 assets/arcaneforces/models/block/waystone.json
 f752582498db7b78baba0e81e7c11747c55e3679 assets/arcaneforces/models/item/cursedring.json
 d3e5ececb79fa730c2671e3c6f2b8c888efd620e assets/arcaneforces/models/item/fragrant_resin.json
 1d3132e87e205dc5b4e9ef28e3dc78090507ae8a assets/arcaneforces/models/item/incense_stick.json
@@ -71,7 +70,7 @@ c813b23f67204e1bcd1070ed7a1a8eb1e2a3b7ee assets/arcaneforces/models/item/rituald
 3db2b526d200671d2ee74ca6004ca817817336d4 assets/arcaneforces/models/item/stripped_olibanum_log.json
 06db0a4ae13daa8a2001fa7803e2bfec6ebeb89d assets/arcaneforces/models/item/stripped_olibanum_wood.json
 2bf243bfe2822ceb89ada1456d2ea6f223d7464c assets/arcaneforces/models/item/voodoodoll.json
-c61d22faa8aa9adfea80c2620a9511c51b43929c data/arcaneforces/loot_table/blocks/bell_ringer.json
+b4efc76819c79413588e3850805804fe538d57aa assets/arcaneforces/models/item/waystone.json
 8b0d4c193ba909adc4227c81ed186aa6d18e8de8 data/arcaneforces/loot_table/blocks/incense_stick.json
 946176dc3294a1932a7b6933e5aa521ca41332db data/arcaneforces/loot_table/blocks/myrrh_leaves.json
 b04d0bd3ed5fe53e9f9632584b0dd11a4a2306a2 data/arcaneforces/loot_table/blocks/myrrh_log.json
@@ -85,3 +84,4 @@ cf6e317a16c04ef52573342915cefd065036436d data/arcaneforces/loot_table/blocks/myr
 a208a1953171fe590d6109a975677928b6fdb107 data/arcaneforces/loot_table/blocks/stripped_myrrh_wood.json
 869274e80eaecfbb628abccc6b8d6d92da9140ec data/arcaneforces/loot_table/blocks/stripped_olibanum_log.json
 028d6b24d24f84efd8be79eb5060d78634640ac3 data/arcaneforces/loot_table/blocks/stripped_olibanum_wood.json
+6b432c6a1018295af00174a1eb6d241d979ea1e6 data/arcaneforces/loot_table/blocks/waystone.json

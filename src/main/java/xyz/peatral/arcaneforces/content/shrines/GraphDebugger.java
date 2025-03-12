@@ -21,7 +21,7 @@ public class GraphDebugger {
             return;
         }
 
-        BellRingerBlockEntity be = getSelectedBE();
+        WaystoneBlockEntity be = getSelectedBE();
         if (be == null)
             return;
 
@@ -69,7 +69,7 @@ public class GraphDebugger {
         return Minecraft.getInstance().getDebugOverlay().showDebugScreen();
     }
 
-    public static BellRingerBlockEntity getSelectedBE() {
+    public static WaystoneBlockEntity getSelectedBE() {
         HitResult obj = Minecraft.getInstance().hitResult;
         ClientLevel world = Minecraft.getInstance().level;
         if (obj == null)
@@ -80,8 +80,8 @@ public class GraphDebugger {
             return null;
 
         BlockEntity be = world.getBlockEntity(ray.getBlockPos());
-        if (be instanceof BellRingerBlockEntity ringer)
-            return ringer;
+        if (be instanceof WaystoneBlockEntity waystone)
+            return waystone;
 
         return null;
     }

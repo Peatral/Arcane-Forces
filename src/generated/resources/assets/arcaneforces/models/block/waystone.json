@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "arcaneforces:block/bell_ringer"
+    "all": "arcaneforces:block/waystone"
   }
 }
