@@ -48,7 +48,7 @@ public class ClientEvents {
         if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) return;
 
         LocalPlayer localPlayer = Minecraft.getInstance().player;
-        if (event.ownerUUID == null || localPlayer == null || !event.ownerUUID.equals(localPlayer.getUUID())) return;
+        if (event.ownerUUID == null || localPlayer == null || event.ownerUUID.id().isPresent() && !event.ownerUUID.id().get().equals(localPlayer.getUUID())) return;
 
         Minecraft.getInstance().getToasts().addToast(new RankupToast(event.name, event.rank, event.icon));
     }
