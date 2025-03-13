@@ -18,6 +18,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import xyz.peatral.arcaneforces.ModDataComponents;
 import xyz.peatral.arcaneforces.ModRecipeTypes;
 import xyz.peatral.arcaneforces.Utils;
 
@@ -30,8 +31,8 @@ public record TappingRecipe(
         List<String> requiredProps,
         BlockState block,
         List<String> propsToCopy,
-        ItemStack drop,
-        float chance
+        ChanceDrop drop,
+        boolean requiresBlood
 ) implements Recipe<SingleRecipeInput> {
     public static final MapCodec<TappingRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(
@@ -39,14 +40,15 @@ public record TappingRecipe(
                     Codec.list(Codec.STRING).fieldOf("required_properties").forGetter(TappingRecipe::requiredProps),
                     BlockState.CODEC.fieldOf("replaced_state").forGetter(TappingRecipe::block),
                     Codec.list(Codec.STRING).fieldOf("properties_to_copy").forGetter(TappingRecipe::propsToCopy),
-                    ItemStack.CODEC.fieldOf("output").forGetter(TappingRecipe::drop),
-                    Codec.FLOAT.fieldOf("output_chance").forGetter(TappingRecipe::chance)
+                    ChanceDrop.CODEC.fieldOf("drop").forGetter(TappingRecipe::drop),
+                    Codec.BOOL.fieldOf("requires_blood").forGetter(TappingRecipe::requiresBlood)
             ).apply(instance, TappingRecipe::new)
     );
     public static final ItemAbility TAPPING = ItemAbility.get("tapping");
     // TODO: replace this with something better
     private static final StreamCodec<ByteBuf, BlockState> BLOCKSTATE_STREAM_CODEC = ByteBufCodecs.fromCodec(BlockState.CODEC);
     private static final StreamCodec<ByteBuf, List<String>> STRING_LIST_STREAM_CODEC = ByteBufCodecs.fromCodec(Codec.list(Codec.STRING));
+
     public static final StreamCodec<RegistryFriendlyByteBuf, TappingRecipe> STREAM_CODEC = StreamCodec.composite(
             BLOCKSTATE_STREAM_CODEC,
             TappingRecipe::input,
@@ -56,10 +58,10 @@ public record TappingRecipe(
             TappingRecipe::block,
             STRING_LIST_STREAM_CODEC,
             TappingRecipe::propsToCopy,
-            ItemStack.STREAM_CODEC,
+            ChanceDrop.STREAM_CODEC,
             TappingRecipe::drop,
-            ByteBufCodecs.FLOAT,
-            TappingRecipe::chance,
+            ByteBufCodecs.BOOL,
+            TappingRecipe::requiresBlood,
             TappingRecipe::new
     );
 
@@ -67,13 +69,14 @@ public record TappingRecipe(
     public static void onBlockToolModification(BlockEvent.BlockToolModificationEvent event) {
         if (event.getItemAbility().equals(TAPPING)) {
             BlockState inputState = event.getState();
+            ItemStack stack = event.getHeldItemStack();
             RecipeManager recipeManager = event.getPlayer().level().getRecipeManager();
             Optional<RecipeHolder<TappingRecipe>> foundRecipe = recipeManager
                     .getAllRecipesFor(ModRecipeTypes.TAPPING.get())
                     .stream()
                     .filter(r -> {
                         TappingRecipe hr = r.value();
-                        return hr.testBlock(inputState);
+                        return hr.testBlock(inputState) && (!hr.requiresBlood() || stack.has(ModDataComponents.TARGET));
                     }).findFirst();
 
             if (foundRecipe.isEmpty())
@@ -81,9 +84,15 @@ public record TappingRecipe(
 
             TappingRecipe recipe = foundRecipe.get().value();
             if (!event.isSimulated()) {
-                if (!event.getLevel().isClientSide() && event.getLevel().getRandom().nextFloat() < recipe.chance) {
-                    if (!event.getPlayer().addItem(recipe.drop.copy())) {
-                        event.getLevel().addFreshEntity(new ItemEntity(event.getPlayer().level(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), recipe.drop.copy()));
+                if (!event.getLevel().isClientSide()) {
+                    ItemStack drop = recipe.drop.roll();
+                    if (!drop.isEmpty()) {
+                        if (!event.getPlayer().addItem(drop.copy())) {
+                            event.getLevel().addFreshEntity(new ItemEntity(event.getPlayer().level(), event.getPlayer().getX(), event.getPlayer().getY(), event.getPlayer().getZ(), drop.copy()));
+                        }
+                    }
+                    if (recipe.requiresBlood() && !event.getPlayer().isCreative()) {
+                        stack.remove(ModDataComponents.TARGET);
                     }
                 }
                 event.setFinalState(recipe.transformBlock(inputState));
@@ -119,7 +128,8 @@ public record TappingRecipe(
 
     @Override
     public ItemStack assemble(SingleRecipeInput input, HolderLookup.Provider provider) {
-        return drop.copy();
+        ItemStack output = drop.stack().copy();
+        return output.isEmpty() ? new ItemStack(block.getBlock()) : output;
     }
 
     @Override
@@ -129,7 +139,8 @@ public record TappingRecipe(
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return drop.copy();
+        ItemStack output = drop.stack().copy();
+        return output.isEmpty() ? new ItemStack(block.getBlock()) : output;
     }
 
     @Override

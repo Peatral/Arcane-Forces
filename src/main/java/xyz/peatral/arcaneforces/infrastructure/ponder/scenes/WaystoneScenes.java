@@ -1,10 +1,18 @@
 package xyz.peatral.arcaneforces.infrastructure.ponder.scenes;
 
+import com.mojang.authlib.GameProfile;
+import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.PonderPalette;
 import net.createmod.ponder.api.scene.SceneBuilder;
 import net.createmod.ponder.api.scene.SceneBuildingUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.UUIDUtil;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ResolvableProfile;
+import xyz.peatral.arcaneforces.ModDataComponents;
+import xyz.peatral.arcaneforces.ModItems;
 
 public class WaystoneScenes {
     public static void basicUsage(SceneBuilder scene, SceneBuildingUtil util) {
@@ -28,12 +36,32 @@ public class WaystoneScenes {
 
         scene.world().showSection(util.select().position(waystoneB), Direction.DOWN);
         scene.idle(10);
-        scene.overlay().showText(20)
+        scene.overlay().showText(30)
                 .placeNearTarget()
-                .text("Waystones placed within range connect to each other")
+                .text("Activated Waystones placed within range connect to each other")
                 .attachKeyFrame()
                 .pointAt(util.vector().centerOf(waystoneB));
-        scene.idle(10);
+        scene.idle(35);
+
+        ResolvableProfile targetProfile = new ResolvableProfile(new GameProfile(UUIDUtil.createOfflinePlayerUUID("target"), "target"));
+        ItemStack dagger = new ItemStack(ModItems.RITUAL_DAGGER.get());
+        dagger
+                .applyComponents(
+                        DataComponentMap.builder()
+                                .set(ModDataComponents.TARGET.get(), targetProfile)
+                                .build()
+                );
+
+        scene.overlay().showControls(util.vector().blockSurface(waystoneA, Direction.UP), Pointing.DOWN, 30)
+                        .rightClick()
+                        .withItem(dagger);
+        scene.idle(35);
+
+        scene.overlay().showControls(util.vector().blockSurface(waystoneB, Direction.UP), Pointing.DOWN, 30)
+                .rightClick()
+                .withItem(dagger);
+        scene.idle(35);
+
         scene.overlay().showLine(PonderPalette.GREEN, util.vector().centerOf(waystoneA), util.vector().centerOf(waystoneB), 20);
 
         scene.idle(25);

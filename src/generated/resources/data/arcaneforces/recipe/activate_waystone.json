@@ -1,0 +1,27 @@
+{
+  "type": "arcaneforces:tapping",
+  "drop": {
+    "chance": 0.01,
+    "stack": {
+      "count": 1,
+      "id": "arcaneforces:bloody_sen"
+    }
+  },
+  "input_state": {
+    "Name": "arcaneforces:waystone",
+    "Properties": {
+      "activated": "false"
+    }
+  },
+  "properties_to_copy": [],
+  "replaced_state": {
+    "Name": "arcaneforces:waystone",
+    "Properties": {
+      "activated": "true"
+    }
+  },
+  "required_properties": [
+    "activated"
+  ],
+  "requires_blood": true
+}

@@ -28,6 +28,8 @@ public class ModItems {
     public static final ItemEntry<CursedRingItem> CURSED_RING = REGISTRATE.get().item("cursedring", properties -> new CursedRingItem()).lang("Cursed Ring").register();
     public static final ItemEntry<VoodooDollItem> VOODOO_DOLL = REGISTRATE.get().item("voodoodoll", properties -> new VoodooDollItem()).tab(null).lang("Voodoo Doll").register();
     public static final ItemEntry<Item> FRAGRANT_RESIN = REGISTRATE.get().item("fragrant_resin", Item::new).lang("Fragrant Resin").register();
+    public static final ItemEntry<Item> SEN = REGISTRATE.get().item("sen", Item::new).lang("Sen").register();
+    public static final ItemEntry<Item> BLOODY_SEN = REGISTRATE.get().item("bloody_sen", Item::new).lang("Bloody Sen").register();
 
 
     public static void register(IEventBus eventBus) {

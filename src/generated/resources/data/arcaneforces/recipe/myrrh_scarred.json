@@ -1,5 +1,12 @@
 {
   "type": "arcaneforces:tapping",
+  "drop": {
+    "chance": 0.05,
+    "stack": {
+      "count": 1,
+      "id": "arcaneforces:fragrant_resin"
+    }
+  },
   "input_state": {
     "Name": "arcaneforces:myrrh_log",
     "Properties": {
@@ -8,11 +15,6 @@
       "state": "default"
     }
   },
-  "output": {
-    "count": 1,
-    "id": "arcaneforces:fragrant_resin"
-  },
-  "output_chance": 0.05,
   "properties_to_copy": [
     "axis",
     "placed_by_player"
@@ -28,5 +30,6 @@
   "required_properties": [
     "state",
     "placed_by_player"
-  ]
+  ],
+  "requires_blood": false
 }

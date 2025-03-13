@@ -17,12 +17,16 @@ import net.minecraft.world.level.block.state.properties.Property;
 import xyz.peatral.arcaneforces.Main;
 import xyz.peatral.arcaneforces.ModBlocks;
 import xyz.peatral.arcaneforces.ModItems;
+import xyz.peatral.arcaneforces.content.incense.ChanceDrop;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.incense.TappingRecipe;
+import xyz.peatral.arcaneforces.content.shrines.WaystoneBlock;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+
+import static xyz.peatral.arcaneforces.ModItems.BLOODY_SEN;
 
 public class ModRecipeProvider extends RecipeProvider {
     public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
@@ -35,8 +39,8 @@ public class ModRecipeProvider extends RecipeProvider {
             List<Property<?>> requiredProps,
             BlockState blockOutput,
             List<Property<?>> propsToCopy,
-            ItemStack dropOutput,
-            float chance,
+            ChanceDrop dropOutput,
+            boolean requiresBlood,
             Map<String, Criterion<?>> criteria,
             RecipeOutput pRecipeOutput
     ) {
@@ -47,7 +51,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 blockOutput,
                 propsToCopy.stream().map(Property::getName).toList(),
                 dropOutput,
-                chance
+                requiresBlood
         );
         Advancement.Builder builder = pRecipeOutput.advancement()
                 .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(location))
@@ -112,8 +116,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 List.of(IncenseLogBlock.STATE),
                 ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
-                new ItemStack(ModItems.FRAGRANT_RESIN.get()),
-                1.0f,
+                new ChanceDrop(new ItemStack(ModItems.FRAGRANT_RESIN.get()), 1.0f),
+                false,
                 Map.of(getHasName(ModItems.RITUAL_DAGGER.get()), has(ModItems.RITUAL_DAGGER.get())),
                 pRecipeOutput
         );
@@ -123,8 +127,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 List.of(IncenseLogBlock.STATE),
                 ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
-                new ItemStack(ModItems.FRAGRANT_RESIN.get()),
-                1.0f,
+                new ChanceDrop(new ItemStack(ModItems.FRAGRANT_RESIN.get()), 1.0f),
+                false,
                 Map.of(getHasName(ModItems.RITUAL_DAGGER.get()), has(ModItems.RITUAL_DAGGER.get())),
                 pRecipeOutput
         );
@@ -135,8 +139,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
                 ModBlocks.OLIBANUM_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
-                new ItemStack(ModItems.FRAGRANT_RESIN.get()),
-                0.05f,
+                new ChanceDrop(new ItemStack(ModItems.FRAGRANT_RESIN.get()), 0.05f),
+                false,
                 Map.of(getHasName(ModItems.RITUAL_DAGGER.get()), has(ModItems.RITUAL_DAGGER.get())),
                 pRecipeOutput
         );
@@ -146,8 +150,20 @@ public class ModRecipeProvider extends RecipeProvider {
                 List.of(IncenseLogBlock.STATE, IncenseLogBlock.PLACED_BY_PLAYER),
                 ModBlocks.MYRRH_LOG.get().defaultBlockState().setValue(IncenseLogBlock.STATE, IncenseLogBlock.State.SCARRED),
                 List.of(IncenseLogBlock.AXIS, IncenseLogBlock.PLACED_BY_PLAYER),
-                new ItemStack(ModItems.FRAGRANT_RESIN.get()),
-                0.05f,
+                new ChanceDrop(new ItemStack(ModItems.FRAGRANT_RESIN.get()), 0.05f),
+                false,
+                Map.of(getHasName(ModItems.RITUAL_DAGGER.get()), has(ModItems.RITUAL_DAGGER.get())),
+                pRecipeOutput
+        );
+
+        tappingRecipe(
+                "activate_waystone",
+                ModBlocks.WAYSTONE.get().defaultBlockState().setValue(WaystoneBlock.ACTIVATED, false),
+                List.of(WaystoneBlock.ACTIVATED),
+                ModBlocks.WAYSTONE.get().defaultBlockState().setValue(WaystoneBlock.ACTIVATED, true),
+                List.of(),
+                new ChanceDrop(ModItems.BLOODY_SEN.asStack(), 0.01f),
+                true,
                 Map.of(getHasName(ModItems.RITUAL_DAGGER.get()), has(ModItems.RITUAL_DAGGER.get())),
                 pRecipeOutput
         );

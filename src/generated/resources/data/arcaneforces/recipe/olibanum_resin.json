@@ -1,5 +1,12 @@
 {
   "type": "arcaneforces:tapping",
+  "drop": {
+    "chance": 1.0,
+    "stack": {
+      "count": 1,
+      "id": "arcaneforces:fragrant_resin"
+    }
+  },
   "input_state": {
     "Name": "arcaneforces:olibanum_log",
     "Properties": {
@@ -8,11 +15,6 @@
       "state": "resin"
     }
   },
-  "output": {
-    "count": 1,
-    "id": "arcaneforces:fragrant_resin"
-  },
-  "output_chance": 1.0,
   "properties_to_copy": [
     "axis",
     "placed_by_player"
@@ -27,5 +29,6 @@
   },
   "required_properties": [
     "state"
-  ]
+  ],
+  "requires_blood": false
 }
