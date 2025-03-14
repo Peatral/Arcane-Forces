@@ -1,0 +1,9 @@
+{
+  "parent": "arcaneforces:block/shrine_altar/base",
+  "textures": {
+    "base": "arcaneforces:block/shrine_altar/shrine_altar_base",
+    "particle": "arcaneforces:block/shrine_altar/shrine_altar_base",
+    "pillar": "arcaneforces:block/shrine_altar/shrine_altar_pillar",
+    "top": "arcaneforces:block/shrine_altar/shrine_altar_top"
+  }
+}

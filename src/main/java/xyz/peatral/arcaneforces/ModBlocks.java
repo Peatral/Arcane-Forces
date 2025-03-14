@@ -20,6 +20,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import xyz.peatral.arcaneforces.content.shrines.ShrineAltarBlock;
 import xyz.peatral.arcaneforces.content.shrines.WaystoneBlock;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.worldgen.ModTrees;
@@ -88,6 +89,22 @@ public class ModBlocks {
             .item().model((c, p) -> p.withExistingParent("waystone", Main.asResource("block/waystone/not_activated"))).build()
             .register();
 
+    public static final BlockEntry<ShrineAltarBlock> SHRINE_ALTAR = REGISTRATE.get().block("shrine_altar", ShrineAltarBlock::new)
+            .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                    .partialState()
+                    .modelForState()
+                    .modelFile(p.models().withExistingParent("block/shrine_altar/not_activated", Main.asResource("block/shrine_altar/base"))
+                            .texture("particle", Main.asResource("block/shrine_altar/shrine_altar_base"))
+                            .texture("base", Main.asResource("block/shrine_altar/shrine_altar_base"))
+                            .texture("pillar", Main.asResource("block/shrine_altar/shrine_altar_pillar"))
+                            .texture("top", Main.asResource("block/shrine_altar/shrine_altar_top"))
+                    )
+                    .addModel()
+            )
+            .lang("Shrine Altar")
+            .defaultLoot()
+            .item().model((c, p) -> p.withExistingParent("shrine_altar", Main.asResource("block/shrine_altar/not_activated"))).build()
+            .register();
 
 
     public static final NonNullFunction<BlockBehaviour.Properties, RotatedPillarBlock> logBlock() {

@@ -1,4 +1,4 @@
-package xyz.peatral.arcaneforces.content.shrines;
+package xyz.peatral.arcaneforces.content.shrines.network;
 
 import net.createmod.catnip.outliner.Outliner;
 import net.minecraft.client.Minecraft;
@@ -10,10 +10,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GraphDebugger {
     public static void tick() {
@@ -21,7 +18,7 @@ public class GraphDebugger {
             return;
         }
 
-        WaystoneBlockEntity be = getSelectedBE();
+        ShrineNetworkLocationBlockEntity be = getSelectedBE();
         if (be == null)
             return;
 
@@ -38,22 +35,28 @@ public class GraphDebugger {
         }
 
         ClientShrineSavedData.getGraph(level).ifPresent(blockPosGraph -> {
-            List<BlockPos> queue = new ArrayList<>();
-            queue.add(origin);
-            Set<BlockPos> visited = new HashSet<>();
+            Optional<ShrineNetworkLocation> location = blockPosGraph.getNodes().stream().filter(loc -> loc.position().equals(origin)).findFirst();
+            if (location.isEmpty()) {
+                return;
+            }
+
+            List<ShrineNetworkLocation> queue = new ArrayList<>();
+            queue.add(location.get());
+
+            Set<ShrineNetworkLocation> visited = new HashSet<>();
             while (!queue.isEmpty()) {
-                BlockPos pos = queue.removeFirst();
+                ShrineNetworkLocation pos = queue.removeFirst();
                 if (visited.contains(pos)) {
                     continue;
                 }
                 visited.add(pos);
-                Set<BlockPos> neighbors = blockPosGraph.getNeighbors(pos);
+                Set<ShrineNetworkLocation> neighbors = blockPosGraph.getNeighbors(pos);
                 if (neighbors == null) {
                     continue;
                 }
                 queue.addAll(neighbors);
-                for (BlockPos neighbor : neighbors) {
-                    Outliner.getInstance().showLine(pos.toShortString() + "to" + neighbor.toShortString(), pos.getCenter(), neighbor.getCenter())
+                for (ShrineNetworkLocation neighbor : neighbors) {
+                    Outliner.getInstance().showLine(pos.position().toShortString() + "to" + neighbor.position().toShortString(), pos.position().getCenter(), neighbor.position().getCenter())
                             .lineWidth(1 / 16f);
                 }
             }
@@ -69,7 +72,7 @@ public class GraphDebugger {
         return Minecraft.getInstance().getDebugOverlay().showDebugScreen();
     }
 
-    public static WaystoneBlockEntity getSelectedBE() {
+    public static ShrineNetworkLocationBlockEntity getSelectedBE() {
         HitResult obj = Minecraft.getInstance().hitResult;
         ClientLevel world = Minecraft.getInstance().level;
         if (obj == null)
@@ -80,8 +83,8 @@ public class GraphDebugger {
             return null;
 
         BlockEntity be = world.getBlockEntity(ray.getBlockPos());
-        if (be instanceof WaystoneBlockEntity waystone)
-            return waystone;
+        if (be instanceof ShrineNetworkLocationBlockEntity networkLocation)
+            return networkLocation;
 
         return null;
     }

@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BellBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -12,16 +13,20 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkLocation;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkLocationBlockEntity;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineSavedData;
 
 import java.util.*;
 
-public class WaystoneBlockEntity extends BlockEntity {
+public class WaystoneBlockEntity extends ShrineNetworkLocationBlockEntity {
     private List<Set<BlockPos>> bells = new ArrayList<>();
 
     private int timer = 0;
 
     public WaystoneBlockEntity(BlockEntityType<WaystoneBlockEntity> type, BlockPos pPos, BlockState pBlockState) {
         super(type, pPos, pBlockState);
+        location = new ShrineNetworkLocation("", pPos, false);
     }
 
 
@@ -39,10 +44,9 @@ public class WaystoneBlockEntity extends BlockEntity {
 
         if (!level.isClientSide()) {
             ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) level);
-            data.addShrine(pPos);
-            Set<Pair<BlockPos, Integer>> shrines = data.getGraph().getGraph(pPos);
-            for (Pair<BlockPos, Integer> shrine : shrines) {
-                BlockPos shrinePos = shrine.getFirst();
+            Set<Pair<ShrineNetworkLocation, Integer>> shrines = data.getDepths(pPos);
+            for (Pair<ShrineNetworkLocation, Integer> shrine : shrines) {
+                BlockPos shrinePos = shrine.getFirst().position();
 
                 WaystoneBlockEntity waystoneBlockEntity = (WaystoneBlockEntity) level.getBlockEntity(shrinePos);
                 if (waystoneBlockEntity != null) {
@@ -104,5 +108,16 @@ public class WaystoneBlockEntity extends BlockEntity {
 
             waystoneBlockEntity.timer = 15;
         }
+    }
+
+
+    public void teleportToClosestShrine(Level pLevel, Player pPlayer) {
+        if (level.isClientSide) {
+            return;
+        }
+        ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) pLevel);
+        ShrineNetworkLocation closestNode = data.getGraph().getClosestNode(data.getShrines().stream().filter(location -> location.position().equals(getBlockPos())).findFirst().get(), ShrineNetworkLocation::fastTravelable);
+        Vec3 pos = closestNode.position().above().getCenter();
+        pPlayer.teleportTo(pos.x, pos.y, pos.z);
     }
 }

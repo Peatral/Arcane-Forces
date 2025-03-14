@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import xyz.peatral.arcaneforces.*;
-import xyz.peatral.arcaneforces.content.shrines.ShrineSavedData;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineSavedData;
 
 @EventBusSubscriber(modid = Main.MOD_ID)
 public class CommonEvents {
