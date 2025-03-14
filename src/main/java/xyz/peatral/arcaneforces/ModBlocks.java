@@ -58,7 +58,7 @@ public class ModBlocks {
                     .lightLevel(CandleBlock.LIGHT_EMISSION)
                     .pushReaction(PushReaction.DESTROY)
             ))
-            .blockstate((context, provider) -> ModBlockStateProvider.sticksWithItem(provider, context.get(), context.getId()))
+            .blockstate((context, provider) -> ModBlockStateProvider.sticksWithItem(provider, context.get(), context.getId().withPrefix("block/incense_stick/")))
             .lang("Incense Stick")
             .loot((lootTables, candleBlock) -> lootTables.add(candleBlock, lootTables.createCandleDrops(candleBlock)))
             .item().defaultModel().build()
@@ -134,7 +134,13 @@ public class ModBlocks {
     }
 
     public static final BlockEntry<IncenseLogBlock> incenseLog(String name, String translation) {
-        return block(name, IncenseLogBlock::new, (context, provider) -> ModBlockStateProvider.incenselogBlockWithItem(provider, context.getId(), context.get()), translation);
+        return REGISTRATE.get()
+                .block(name, IncenseLogBlock::new)
+                .lang(translation)
+                .blockstate((c, p) -> ModBlockStateProvider.incenselogBlockWithItem(p, c.getId().withPrefix("block/" + name + "/"), c.get()))
+                .defaultLoot()
+                .item().model((c, p) -> p.withExistingParent(name, c.getId().withPrefix("block/" + name + "/"))).build()
+                .register();
     }
 
     public static final BlockEntry<RotatedPillarBlock> log(String name, String translation) {

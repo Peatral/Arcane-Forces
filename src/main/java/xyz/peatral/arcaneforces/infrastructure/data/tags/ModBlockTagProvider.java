@@ -50,9 +50,5 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                         ModBlocks.OLIBANUM_LEAVES.get(),
                         ModBlocks.MYRRH_LEAVES.get()
                 );
-        tag(BlockTags.CANDLES)
-                .add(
-                        ModBlocks.INCENSE_STICK.get()
-                );
     }
 }
