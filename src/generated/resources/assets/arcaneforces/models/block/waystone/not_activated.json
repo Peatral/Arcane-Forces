@@ -1,0 +1,8 @@
+{
+  "parent": "arcaneforces:block/waystone/base",
+  "textures": {
+    "base": "arcaneforces:block/waystone/waystone_base",
+    "particle": "arcaneforces:block/waystone/waystone_base",
+    "pillar": "arcaneforces:block/waystone/waystone_pillar"
+  }
+}

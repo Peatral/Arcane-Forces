@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "arcaneforces:block/waystone"
+    "activated=false": {
+      "model": "arcaneforces:block/waystone/not_activated"
+    },
+    "activated=true": {
+      "model": "arcaneforces:block/waystone/activated"
     }
   }
 }

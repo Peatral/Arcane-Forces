@@ -2,6 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
+    "E": {
+      "item": "minecraft:emerald"
+    },
     "G": {
       "item": "minecraft:gold_ingot"
     },
@@ -10,8 +13,9 @@
     }
   },
   "pattern": [
-    " G",
-    "S "
+    "G",
+    "S",
+    "E"
   ],
   "result": {
     "count": 1,

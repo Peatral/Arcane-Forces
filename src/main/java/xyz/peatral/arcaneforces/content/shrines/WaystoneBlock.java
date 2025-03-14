@@ -1,12 +1,11 @@
 package xyz.peatral.arcaneforces.content.shrines;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -20,9 +19,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import xyz.peatral.arcaneforces.ModBlockEntities;
-import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
+
+import java.util.stream.Stream;
 
 public class WaystoneBlock extends Block implements EntityBlock {
     public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
@@ -88,4 +92,21 @@ public class WaystoneBlock extends Block implements EntityBlock {
         }
         return InteractionResult.SUCCESS;
     }
+
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return Stream.of(
+                Block.box(2, 0, 2, 14, 2, 14),
+                Block.box(3, 2, 3, 13, 4, 13),
+                Block.box(4, 4, 4, 12, 16, 12)
+        ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    }
+
+    @Override
+    public boolean hidesNeighborFace(BlockGetter level, BlockPos pos, BlockState state, BlockState neighborState, Direction dir) {
+        return false;
+    }
+
+
 }

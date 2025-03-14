@@ -64,7 +64,29 @@ public class ModBlocks {
             .item().defaultModel().build()
             .register();
 
-    public static final BlockEntry<WaystoneBlock> WAYSTONE = REGISTRATE.get().block("waystone", WaystoneBlock::new).lang("Waystone").defaultLoot().item().build().register();
+    public static final BlockEntry<WaystoneBlock> WAYSTONE = REGISTRATE.get().block("waystone", WaystoneBlock::new)
+            .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                    .partialState().with(WaystoneBlock.ACTIVATED, false)
+                            .modelForState()
+                            .modelFile(p.models().withExistingParent("block/waystone/not_activated", Main.asResource("block/waystone/base"))
+                                    .texture("particle", Main.asResource("block/waystone/waystone_base"))
+                                    .texture("base", Main.asResource("block/waystone/waystone_base"))
+                                    .texture("pillar", Main.asResource("block/waystone/waystone_pillar"))
+                            )
+                            .addModel()
+                    .partialState().with(WaystoneBlock.ACTIVATED, true)
+                            .modelForState()
+                            .modelFile(p.models().withExistingParent("block/waystone/activated", Main.asResource("block/waystone/base"))
+                                    .texture("particle", Main.asResource("block/waystone/waystone_base"))
+                                    .texture("base", Main.asResource("block/waystone/waystone_base"))
+                                    .texture("pillar", Main.asResource("block/waystone/waystone_pillar_activated"))
+                            )
+                            .addModel()
+            )
+            .lang("Waystone")
+            .defaultLoot()
+            .item().model((c, p) -> p.withExistingParent("waystone", Main.asResource("block/waystone/not_activated"))).build()
+            .register();
 
 
 

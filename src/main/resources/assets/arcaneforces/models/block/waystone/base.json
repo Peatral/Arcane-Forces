@@ -1,0 +1,90 @@
+{
+	"textures": {
+		"particle": "arcaneforces:block/waystone/waystone_base",
+		"base": "arcaneforces:block/waystone/waystone_base",
+		"pillar": "arcaneforces:block/waystone/waystone_pillar"
+	},
+	"elements": [
+		{
+			"name": "bottom_base",
+			"from": [2, 0, 2],
+			"to": [14, 2, 14],
+			"faces": {
+				"north": {"uv": [0, 12, 12, 14], "texture": "#base"},
+				"east": {"uv": [0, 12, 12, 14], "texture": "#base"},
+				"south": {"uv": [0, 12, 12, 14], "texture": "#base"},
+				"west": {"uv": [0, 12, 12, 14], "texture": "#base"},
+				"up": {"uv": [0, 0, 12, 12], "texture": "#base"},
+				"down": {"uv": [0, 0, 12, 12], "texture": "#base"}
+			}
+		},
+		{
+			"name": "middle_base",
+			"from": [3, 2, 3],
+			"to": [13, 4, 13],
+			"faces": {
+				"north": {"uv": [0, 14, 10, 16], "texture": "#base"},
+				"east": {"uv": [0, 14, 10, 16], "texture": "#base"},
+				"south": {"uv": [0, 14, 10, 16], "texture": "#base"},
+				"west": {"uv": [0, 14, 10, 16], "texture": "#base"},
+				"up": {"uv": [1, 1, 11, 11], "texture": "#base"},
+				"down": {"uv": [1, 1, 11, 11], "texture": "#base"}
+			}
+		},
+		{
+			"name": "pillar",
+			"from": [4, 4, 4],
+			"to": [12, 16, 12],
+			"faces": {
+				"north": {"uv": [8, 0, 16, 12], "texture": "#pillar"},
+				"east": {"uv": [8, 0, 16, 12], "texture": "#pillar"},
+				"south": {"uv": [8, 0, 16, 12], "texture": "#pillar"},
+				"west": {"uv": [8, 0, 16, 12], "texture": "#pillar"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#pillar"},
+				"down": {"uv": [0, 0, 8, 8], "texture": "#pillar"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"head": {
+			"translation": [0, 14.5, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

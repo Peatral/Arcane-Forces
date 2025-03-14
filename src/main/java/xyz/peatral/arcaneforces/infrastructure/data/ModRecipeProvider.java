@@ -96,16 +96,23 @@ public class ModRecipeProvider extends RecipeProvider {
                 .shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.RITUAL_DAGGER.get())
                 .define('G', Items.GOLD_INGOT)
                 .define('S', Items.STICK)
-                .pattern(" G")
-                .pattern("S ")
+                .define('E', Items.EMERALD)
+                .pattern("G")
+                .pattern("S")
+                .pattern("E")
                 .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "ritual_dagger"));
 
-        ShapelessRecipeBuilder
-                .shapeless(RecipeCategory.DECORATIONS, ModBlocks.INCENSE_STICK.get())
-                .requires(Blocks.BAMBOO)
-                .requires(ModItems.FRAGRANT_RESIN.get())
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.DECORATIONS, ModBlocks.INCENSE_STICK.get())
+                .define('B', Blocks.BAMBOO)
+                .define('R', ModItems.FRAGRANT_RESIN.get())
+                .define('S', Items.STRING)
+                .pattern("S")
+                .pattern("R")
+                .pattern("B")
+                .unlockedBy(getHasName(Items.STRING), has(Items.STRING))
                 .unlockedBy(getHasName(Items.BAMBOO), has(Items.BAMBOO))
                 .unlockedBy(getHasName(ModItems.FRAGRANT_RESIN.get()), has(ModItems.FRAGRANT_RESIN.get()))
                 .save(pRecipeOutput, ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "incense_stick"));
