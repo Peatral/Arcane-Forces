@@ -1,7 +1,8 @@
-// 1.21.1	2025-03-14T01:48:07.6517548	Tags for minecraft:block mod id arcaneforces
+// 1.21.1	2025-03-14T16:49:32.6705093	Tags for minecraft:block mod id arcaneforces
 fa4dcdd33d78beffc50a2afb60897f29ca020ce3 data/arcaneforces/tags/block/incense_logs.json
 321ad505b9d8c2b7a129b36ef28be63371e54d6c data/arcaneforces/tags/block/myrrh_logs.json
 f766461dfb0e4c2012a06de196e52bd372f072e9 data/arcaneforces/tags/block/olibanum_logs.json
+199d3a055513bf16da045b9502a2e2a0350257f6 data/minecraft/tags/block/candles.json
 5f1280a23407ab0f3a383cf23cc964650f7c9406 data/minecraft/tags/block/leaves.json
 9fb1ba583afae3839bc566cee229d785cf6d21a2 data/minecraft/tags/block/logs_that_burn.json
 5f1280a23407ab0f3a383cf23cc964650f7c9406 data/minecraft/tags/block/mineable/hoe.json

@@ -17,7 +17,6 @@
     "base": 10,
     "per_level_above_first": 20
   },
-  "primary_items": "#arcaneforces:enchantable/spell_holders",
   "slots": [
     "hand"
   ],

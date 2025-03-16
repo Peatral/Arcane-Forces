@@ -1,10 +1,10 @@
-// 1.21.1	2025-03-11T00:50:04.387334	Registries
+// 1.21.1	2025-03-14T16:42:25.8139838	Registries
 c4265b1521052138860123a55558a9a42952c93d data/arcaneforces/damage_type/death_curse.json
 be8b8e3a230091bc14e55afec8e91a27bf32e1b5 data/arcaneforces/damage_type/ritual_sacrifice.json
-ed88da69fe31d503b00b99b2f844ff6fd8dbad14 data/arcaneforces/enchantment/death_curse.json
-09aa6ca914cb6c1f608cf8580d2f9c4a39243d3d data/arcaneforces/enchantment/fire_curse.json
-2a42e7ac7a616e68b7f1291e96828967c4ee1f65 data/arcaneforces/enchantment/flight_blessing.json
-98ad56f29500b14d0dfe8dc9b15dc2df7bfb5a08 data/arcaneforces/enchantment/poison_curse.json
+a2abcbb45df948be7214965c6df3dac8bd6faa44 data/arcaneforces/enchantment/death_curse.json
+3505fd8776c4fe9136d1ef4d303fdba59a8b5f27 data/arcaneforces/enchantment/fire_curse.json
+7936bbae100180df246e55ad8742fe3eb7c2538a data/arcaneforces/enchantment/flight_blessing.json
+5a219e5a04d37cc1c4144790250e00b947f9f91e data/arcaneforces/enchantment/poison_curse.json
 c59ec5d0f5191a6bcdfe92b499cb5867bd281dbe data/arcaneforces/neoforge/biome_modifier/desert.json
 931049a0aee9e41b9a0f967e1f0a35bf4974dbca data/arcaneforces/worldgen/configured_feature/myrrh.json
 36cbb3126cdf34177053b850dea18e702df2c6fb data/arcaneforces/worldgen/configured_feature/olibanum.json

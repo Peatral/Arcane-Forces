@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BellBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -12,10 +13,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkNodeBlockEntity;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineSavedData;
 
 import java.util.*;
 
-public class WaystoneBlockEntity extends BlockEntity {
+public class WaystoneBlockEntity extends ShrineNetworkNodeBlockEntity {
     private List<Set<BlockPos>> bells = new ArrayList<>();
 
     private int timer = 0;
@@ -39,8 +42,7 @@ public class WaystoneBlockEntity extends BlockEntity {
 
         if (!level.isClientSide()) {
             ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) level);
-            data.addShrine(pPos);
-            Set<Pair<BlockPos, Integer>> shrines = data.getGraph().getGraph(pPos);
+            Set<Pair<BlockPos, Integer>> shrines = data.network().getDepths(pPos);
             for (Pair<BlockPos, Integer> shrine : shrines) {
                 BlockPos shrinePos = shrine.getFirst();
 
@@ -104,5 +106,19 @@ public class WaystoneBlockEntity extends BlockEntity {
 
             waystoneBlockEntity.timer = 15;
         }
+    }
+
+
+    public void teleportToClosestShrine(Level pLevel, Player pPlayer) {
+        if (level.isClientSide) {
+            return;
+        }
+        ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) pLevel);
+        BlockPos closestNode = data.network().getClosestShrine(getBlockPos());
+        if (closestNode == null) {
+            return;
+        }
+        Vec3 pos = closestNode.getCenter();
+        pPlayer.teleportTo(pos.x, pos.y + 0.5, pos.z);
     }
 }

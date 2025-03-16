@@ -28,8 +28,8 @@ import xyz.peatral.arcaneforces.api.events.RankUpEvent;
 import xyz.peatral.arcaneforces.client.gui.toasts.RankupToast;
 import xyz.peatral.arcaneforces.client.gui.tooltip.RankbarTooltip;
 import xyz.peatral.arcaneforces.content.ranking.IRanking;
-import xyz.peatral.arcaneforces.content.shrines.ClientShrineSavedData;
-import xyz.peatral.arcaneforces.content.shrines.GraphDebugger;
+import xyz.peatral.arcaneforces.content.shrines.network.ClientShrineSavedData;
+import xyz.peatral.arcaneforces.content.shrines.network.GraphDebugger;
 
 import java.util.List;
 import java.util.Optional;
@@ -115,7 +115,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onLevelUnload(LevelEvent.Unload event) {
         if (event.getLevel() instanceof ClientLevel level) {
-            ClientShrineSavedData.unloadGraph(level);
+            ClientShrineSavedData.unloadNetwork(level);
         }
     }
 

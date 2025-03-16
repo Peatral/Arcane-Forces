@@ -2,21 +2,16 @@ package xyz.peatral.arcaneforces.content.shrines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -27,30 +22,25 @@ import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkNodeBlockEn
 
 import java.util.stream.Stream;
 
-public class WaystoneBlock extends Block implements EntityBlock {
-    public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
+public class ShrineAltarBlock extends Block implements EntityBlock {
 
-    public WaystoneBlock(BlockBehaviour.Properties properties) {
+    public ShrineAltarBlock(Properties properties) {
         super(properties
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0F)
                 .sound(SoundType.WOOD)
                 .ignitedByLava());
         registerDefaultState(
-                super.defaultBlockState().setValue(ACTIVATED, false)
+                super.defaultBlockState()
         );
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        super.createBlockStateDefinition(pBuilder.add(ACTIVATED));
-    }
-
-    @Override
-    public void onBlockStateChange(LevelReader level, BlockPos pos, BlockState oldState, BlockState newState) {
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
         BlockEntity entity = level.getBlockEntity(pos);
         if (entity instanceof ShrineNetworkNodeBlockEntity networkLocation) {
-            networkLocation.setActive(newState.getValue(ACTIVATED));
+            networkLocation.activate();
         }
     }
 
@@ -66,36 +56,22 @@ public class WaystoneBlock extends Block implements EntityBlock {
     @SuppressWarnings("unchecked")
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == ModBlockEntities.WAYSTONE.get() ? WaystoneBlockEntity::tick : null;
+        return type == ModBlockEntities.SHRINE_ALTAR.get() ? ShrineAltarBlockEntity::tick : null;
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new WaystoneBlockEntity(ModBlockEntities.WAYSTONE.get(), pPos, pState);
-    }
-
-    @Override
-    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
-        if (!pState.getValue(ACTIVATED)) {
-            return InteractionResult.PASS;
-        }
-
-        BlockEntity entity = pLevel.getBlockEntity(pPos);
-        if (entity instanceof WaystoneBlockEntity waystoneBlockEntity) {
-            waystoneBlockEntity.teleportToClosestShrine(pLevel, pPlayer);
-            //waystoneBlockEntity.ringBells(pLevel, pPos, pPlayer);
-        }
-        return InteractionResult.SUCCESS;
+        return new ShrineAltarBlockEntity(ModBlockEntities.SHRINE_ALTAR.get(), pPos, pState);
     }
 
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Stream.of(
-                Block.box(2, 0, 2, 14, 2, 14),
-                Block.box(3, 2, 3, 13, 4, 13),
-                Block.box(4, 4, 4, 12, 16, 12)
+                Block.box(1, 0, 1, 15, 2, 15),
+                Block.box(0, 14, 0, 16, 16, 16),
+                Block.box(2, 2, 2, 14, 14, 14)
         ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 

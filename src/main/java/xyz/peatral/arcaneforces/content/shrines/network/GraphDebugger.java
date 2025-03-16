@@ -1,4 +1,4 @@
-package xyz.peatral.arcaneforces.content.shrines;
+package xyz.peatral.arcaneforces.content.shrines.network;
 
 import net.createmod.catnip.outliner.Outliner;
 import net.minecraft.client.Minecraft;
@@ -10,10 +10,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GraphDebugger {
     public static void tick() {
@@ -21,7 +18,7 @@ public class GraphDebugger {
             return;
         }
 
-        WaystoneBlockEntity be = getSelectedBE();
+        ShrineNetworkNodeBlockEntity be = getSelectedBE();
         if (be == null)
             return;
 
@@ -37,9 +34,10 @@ public class GraphDebugger {
                     .colored(0xffcc00);
         }
 
-        ClientShrineSavedData.getGraph(level).ifPresent(blockPosGraph -> {
+        ClientShrineSavedData.getNetwork(level).ifPresent(network -> {
             List<BlockPos> queue = new ArrayList<>();
             queue.add(origin);
+
             Set<BlockPos> visited = new HashSet<>();
             while (!queue.isEmpty()) {
                 BlockPos pos = queue.removeFirst();
@@ -47,7 +45,7 @@ public class GraphDebugger {
                     continue;
                 }
                 visited.add(pos);
-                Set<BlockPos> neighbors = blockPosGraph.getNeighbors(pos);
+                Set<BlockPos> neighbors = network.getNeighbors(pos);
                 if (neighbors == null) {
                     continue;
                 }
@@ -69,7 +67,7 @@ public class GraphDebugger {
         return Minecraft.getInstance().getDebugOverlay().showDebugScreen();
     }
 
-    public static WaystoneBlockEntity getSelectedBE() {
+    public static ShrineNetworkNodeBlockEntity getSelectedBE() {
         HitResult obj = Minecraft.getInstance().hitResult;
         ClientLevel world = Minecraft.getInstance().level;
         if (obj == null)
@@ -80,8 +78,8 @@ public class GraphDebugger {
             return null;
 
         BlockEntity be = world.getBlockEntity(ray.getBlockPos());
-        if (be instanceof WaystoneBlockEntity waystone)
-            return waystone;
+        if (be instanceof ShrineNetworkNodeBlockEntity networkLocation)
+            return networkLocation;
 
         return null;
     }

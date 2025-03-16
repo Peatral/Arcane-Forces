@@ -7,7 +7,7 @@ import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import xyz.peatral.arcaneforces.content.magic.SpellSelector;
 import xyz.peatral.arcaneforces.content.magic.spells.CastSpellPayload;
-import xyz.peatral.arcaneforces.content.shrines.SyncGraphPayload;
+import xyz.peatral.arcaneforces.content.shrines.network.SyncNetworkPayload;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = Main.MOD_ID)
 public class ModPayloads {
@@ -29,9 +29,9 @@ public class ModPayloads {
         );
 
         registrar.playToClient(
-                SyncGraphPayload.TYPE,
-                SyncGraphPayload.STREAM_CODEC,
-                SyncGraphPayload::handlePacketClient
+                SyncNetworkPayload.TYPE,
+                SyncNetworkPayload.STREAM_CODEC,
+                SyncNetworkPayload::handlePacketClient
         );
     }
 }
