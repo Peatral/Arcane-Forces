@@ -20,6 +20,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -27,8 +28,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import xyz.peatral.arcaneforces.ModBlockEntities;
 import xyz.peatral.arcaneforces.ModTags;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetwork;
 import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkNodeBlockEntity;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class WaystoneBlock extends Block implements EntityBlock {
@@ -70,7 +73,16 @@ public class WaystoneBlock extends Block implements EntityBlock {
         }
 
         BlockEntity entity = level.getBlockEntity(pos);
-        if (!(entity instanceof ShrineNetworkNodeBlockEntity networkNode)) {
+        if (!(entity instanceof ShrineNetworkNodeBlockEntity)) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+
+        Optional<ShrineNetwork> network = ShrineNetwork.getNetwork(level);
+        if (network.isEmpty() || network.get().getNeighbors(pos) == null) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+        BlockPos shrine = network.get().getClosestShrine(pos);
+        if (shrine.distSqr(player.getOnPos()) < 100) {
             return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
         }
 
@@ -82,7 +94,8 @@ public class WaystoneBlock extends Block implements EntityBlock {
         }
 
         if (!level.isClientSide()) {
-            networkNode.teleportToClosestShrine(level, player);
+            Vec3 tpPos = Vec3.atCenterOf(shrine).add(new Vec3(0, 0.5, 0));
+            player.teleportTo(tpPos.x, tpPos.y, tpPos.z);
         }
 
         return ItemInteractionResult.CONSUME_PARTIAL;

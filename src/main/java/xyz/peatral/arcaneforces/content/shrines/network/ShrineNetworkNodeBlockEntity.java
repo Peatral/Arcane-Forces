@@ -43,17 +43,4 @@ public abstract class ShrineNetworkNodeBlockEntity extends BlockEntity {
     public void setLocation(ShrineNetworkLocation location) {
         this.location = location;
     }
-
-    public void teleportToClosestShrine(Level pLevel, Player pPlayer) {
-        if (level.isClientSide) {
-            return;
-        }
-        ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) pLevel);
-        BlockPos closestNode = data.network().getClosestShrine(getBlockPos());
-        if (closestNode == null) {
-            return;
-        }
-        Vec3 pos = closestNode.getCenter();
-        pPlayer.teleportTo(pos.x, pos.y + 0.5, pos.z);
-    }
 }
