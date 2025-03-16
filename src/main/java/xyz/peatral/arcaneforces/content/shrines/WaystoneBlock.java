@@ -76,21 +76,6 @@ public class WaystoneBlock extends Block implements EntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
-        if (!pState.getValue(ACTIVATED)) {
-            return InteractionResult.PASS;
-        }
-
-        BlockEntity entity = pLevel.getBlockEntity(pPos);
-        if (entity instanceof WaystoneBlockEntity waystoneBlockEntity) {
-            waystoneBlockEntity.teleportToClosestShrine(pLevel, pPlayer);
-            //waystoneBlockEntity.ringBells(pLevel, pPos, pPlayer);
-        }
-        return InteractionResult.SUCCESS;
-    }
-
-
-    @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Stream.of(
                 Block.box(2, 0, 2, 14, 2, 14),

@@ -12,7 +12,7 @@ public class ShrineAltarBlockEntity extends ShrineNetworkNodeBlockEntity {
 
     public ShrineAltarBlockEntity(BlockEntityType<ShrineAltarBlockEntity> type, BlockPos pPos, BlockState pBlockState) {
         super(type, pPos, pBlockState);
-        location = new ShrineNetworkLocation("Test shrine", true);
+        location = new ShrineNetworkLocation("Test shrine");
     }
 
     @Override

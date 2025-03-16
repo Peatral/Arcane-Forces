@@ -18,6 +18,7 @@ public class ModTags {
         public static final TagKey<Block> INCENSE_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "incense_logs"));
         public static final TagKey<Block> OLIBANUM_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "olibanum_logs"));
         public static final TagKey<Block> MYRRH_LOGS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "myrrh_logs"));
+        public static final TagKey<Block> INCENSE_TRAVEL_STARTERS = BlockTags.create(ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "fast_travel_nodes"));
     }
 
     public static class Items {

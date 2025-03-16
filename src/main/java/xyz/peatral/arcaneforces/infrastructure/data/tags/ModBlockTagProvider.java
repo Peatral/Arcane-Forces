@@ -54,5 +54,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(
                         ModBlocks.INCENSE_STICK.get()
                 );
+        tag(ModTags.Blocks.INCENSE_TRAVEL_STARTERS)
+                .add(
+                        ModBlocks.INCENSE_STICK.get()
+                );
     }
 }

@@ -46,8 +46,8 @@ public class WaystoneBlockEntity extends ShrineNetworkNodeBlockEntity {
             for (Pair<BlockPos, Integer> shrine : shrines) {
                 BlockPos shrinePos = shrine.getFirst();
 
-                WaystoneBlockEntity waystoneBlockEntity = (WaystoneBlockEntity) level.getBlockEntity(shrinePos);
-                if (waystoneBlockEntity != null) {
+                ShrineNetworkNodeBlockEntity nodeBlockEntity = (ShrineNetworkNodeBlockEntity) level.getBlockEntity(shrinePos);
+                if (nodeBlockEntity != null) {
                     addNDistinctPositions(getBells(shrinePos, pLevel, radius), shrine.getSecond(), maxBellsPerShrine);
                 }
             }
@@ -106,19 +106,5 @@ public class WaystoneBlockEntity extends ShrineNetworkNodeBlockEntity {
 
             waystoneBlockEntity.timer = 15;
         }
-    }
-
-
-    public void teleportToClosestShrine(Level pLevel, Player pPlayer) {
-        if (level.isClientSide) {
-            return;
-        }
-        ShrineSavedData data = ShrineSavedData.computeIfAbsent((ServerLevel) pLevel);
-        BlockPos closestNode = data.network().getClosestShrine(getBlockPos());
-        if (closestNode == null) {
-            return;
-        }
-        Vec3 pos = closestNode.getCenter();
-        pPlayer.teleportTo(pos.x, pos.y + 0.5, pos.z);
     }
 }

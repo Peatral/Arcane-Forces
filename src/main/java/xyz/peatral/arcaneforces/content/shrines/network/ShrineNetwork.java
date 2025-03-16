@@ -6,6 +6,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -127,6 +129,14 @@ public class ShrineNetwork {
 
     public interface OnChangeListener {
         void onNetworkChange();
+    }
+
+    public static Optional<ShrineNetwork> getNetwork(Level level) {
+        if (level.isClientSide) {
+            return ClientShrineSavedData.getNetwork(level);
+        } else {
+            return Optional.of(ShrineSavedData.computeIfAbsent((ServerLevel) level).network());
+        }
     }
 
     private static class ShrineNetworkStreamCodec implements StreamCodec<RegistryFriendlyByteBuf, ShrineNetwork> {
