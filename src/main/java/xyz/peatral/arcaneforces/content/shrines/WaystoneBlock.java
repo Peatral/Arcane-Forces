@@ -2,8 +2,10 @@ package xyz.peatral.arcaneforces.content.shrines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -14,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.phys.BlockHitResult;
@@ -23,6 +26,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import xyz.peatral.arcaneforces.ModBlockEntities;
+import xyz.peatral.arcaneforces.ModTags;
 import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkNodeBlockEntity;
 
 import java.util.stream.Stream;
@@ -52,6 +56,36 @@ public class WaystoneBlock extends Block implements EntityBlock {
         if (entity instanceof ShrineNetworkNodeBlockEntity networkLocation) {
             networkLocation.setActive(newState.getValue(ACTIVATED));
         }
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!stack.is(ModTags.Items.OFFERINGS)) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+
+        BlockState above = level.getBlockState(pos.above());
+        if (!state.getValue(ACTIVATED) || !above.is(ModTags.Blocks.INCENSE_TRAVEL_STARTERS) || !CandleBlock.isLit(above)) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+
+        BlockEntity entity = level.getBlockEntity(pos);
+        if (!(entity instanceof ShrineNetworkNodeBlockEntity networkNode)) {
+            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        }
+
+        if (!player.isCreative()) {
+            int candleCount = above.getValue(BlockStateProperties.CANDLES) - 1;
+            BlockState updated = candleCount > 0 ? above.setValue(BlockStateProperties.CANDLES, candleCount).setValue(BlockStateProperties.LIT, Boolean.FALSE) : Blocks.AIR.defaultBlockState();
+            level.setBlock(pos.above(), updated, Block.UPDATE_ALL);
+            stack.setCount(stack.getCount() - 1);
+        }
+
+        if (!level.isClientSide()) {
+            networkNode.teleportToClosestShrine(level, player);
+        }
+
+        return ItemInteractionResult.CONSUME_PARTIAL;
     }
 
     @Override

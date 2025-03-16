@@ -52,5 +52,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         ModBlocks.OLIBANUM_LEAVES.get().asItem(),
                         ModBlocks.MYRRH_LEAVES.get().asItem()
                 );
+        tag(ModTags.Items.OFFERINGS)
+                .add(
+                        ModItems.SEN.get(),
+                        ModItems.BLOODY_SEN.get()
+                );
     }
 }
