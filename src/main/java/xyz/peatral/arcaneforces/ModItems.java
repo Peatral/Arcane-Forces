@@ -5,8 +5,6 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import xyz.peatral.arcaneforces.content.magic.CursedRingItem;
 import xyz.peatral.arcaneforces.content.magic.RitualDaggerItem;
@@ -33,10 +31,9 @@ public class ModItems {
 
 
     public static void register(IEventBus eventBus) {
-        eventBus.addListener(FMLClientSetupEvent.class, ModItems::registerClientStuff);
     }
 
-    private static void registerClientStuff(final FMLClientSetupEvent event) {
+    public static void registerClientStuff(final FMLClientSetupEvent event) {
         ItemProperties.register(ModItems.RITUAL_DAGGER.get(), ResourceLocation.fromNamespaceAndPath(Main.MOD_ID, "hastarget"), (stack, level, entity, seed) -> stack.has(ModDataComponents.TARGET.get()) ? 1 : 0);
     }
 }

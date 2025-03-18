@@ -8,6 +8,8 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -113,6 +115,14 @@ public class ShrineNetwork {
 
     public BlockPos getClosestShrine(BlockPos from) {
         return graph.getClosestNode(from, pos -> locations.containsKey(pos));
+    }
+
+    public Set<Triple<BlockPos, Integer, ShrineNetworkLocation>> getShrines(BlockPos from) {
+        return graph.getDepths(from)
+                .stream()
+                .filter(p -> !p.getFirst().equals(from) && locations.containsKey(p.getFirst()))
+                .map(p -> ImmutableTriple.of(p.getFirst(), p.getSecond(), locations.get(p.getFirst())))
+                .collect(Collectors.toSet());
     }
 
     private void triggerUpdate() {

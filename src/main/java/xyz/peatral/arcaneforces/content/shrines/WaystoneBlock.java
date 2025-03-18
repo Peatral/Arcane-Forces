@@ -2,6 +2,7 @@ package xyz.peatral.arcaneforces.content.shrines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -32,9 +33,12 @@ import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetwork;
 import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkNodeBlockEntity;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class WaystoneBlock extends Block implements EntityBlock {
+    private static final Random RANDOM = new Random();
+
     public static final BooleanProperty ACTIVATED = BooleanProperty.create("activated");
 
     public WaystoneBlock(BlockBehaviour.Properties properties) {
@@ -93,9 +97,21 @@ public class WaystoneBlock extends Block implements EntityBlock {
             stack.setCount(stack.getCount() - 1);
         }
 
+        Vec3 tpPos = Vec3.atCenterOf(shrine).add(new Vec3(0, 0.5, 0));
         if (!level.isClientSide()) {
-            Vec3 tpPos = Vec3.atCenterOf(shrine).add(new Vec3(0, 0.5, 0));
             player.teleportTo(tpPos.x, tpPos.y, tpPos.z);
+        }
+
+        for (int i = 0; i < 32; i++) {
+            level.addParticle(
+                        ParticleTypes.PORTAL,
+                        tpPos.x,
+                        tpPos.y + RANDOM.nextDouble() * 2.0,
+                        tpPos.z,
+                        RANDOM.nextGaussian(),
+                        0.0,
+                        RANDOM.nextGaussian()
+            );
         }
 
         return ItemInteractionResult.CONSUME_PARTIAL;
