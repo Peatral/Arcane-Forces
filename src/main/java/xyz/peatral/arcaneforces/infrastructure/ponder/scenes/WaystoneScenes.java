@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ResolvableProfile;
 import xyz.peatral.arcaneforces.ModDataComponents;
 import xyz.peatral.arcaneforces.ModItems;
-import xyz.peatral.arcaneforces.content.shrines.WaystoneBlock;
+import xyz.peatral.arcaneforces.content.shrines.waystone.WaystoneBlock;
 
 public class WaystoneScenes {
     public static void basicUsage(SceneBuilder scene, SceneBuildingUtil util) {

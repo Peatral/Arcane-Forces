@@ -3,7 +3,6 @@ package xyz.peatral.arcaneforces;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -21,6 +20,7 @@ public class Main {
         ModItems.register(modEventBus);
         ModBlocks.register();
         ModBlockEntities.register();
+        ModEntities.register();
         ModMobEffects.register();
         ModSpells.register(modEventBus);
         ModEnchantmentEffects.register();

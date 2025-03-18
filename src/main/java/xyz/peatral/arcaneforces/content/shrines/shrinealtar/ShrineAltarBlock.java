@@ -1,7 +1,9 @@
-package xyz.peatral.arcaneforces.content.shrines;
+package xyz.peatral.arcaneforces.content.shrines.shrinealtar;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -80,5 +83,12 @@ public class ShrineAltarBlock extends Block implements EntityBlock {
         return false;
     }
 
-
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        BlockEntity ent = level.getBlockEntity(pos);
+        if (ent instanceof ShrineAltarBlockEntity shrine) {
+            return shrine.toggleMap();
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
 }

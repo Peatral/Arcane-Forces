@@ -1,4 +1,4 @@
-package xyz.peatral.arcaneforces.content.shrines;
+package xyz.peatral.arcaneforces.content.shrines.waystone;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -114,7 +114,7 @@ public class WaystoneBlock extends Block implements EntityBlock {
             );
         }
 
-        return ItemInteractionResult.CONSUME_PARTIAL;
+        return ItemInteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override

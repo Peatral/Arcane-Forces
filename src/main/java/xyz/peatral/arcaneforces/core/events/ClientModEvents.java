@@ -9,6 +9,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
@@ -16,6 +17,7 @@ import net.neoforged.neoforge.common.util.Lazy;
 import org.lwjgl.glfw.GLFW;
 import xyz.peatral.arcaneforces.Main;
 import xyz.peatral.arcaneforces.client.gui.CursedRingGuiLayer;
+import xyz.peatral.arcaneforces.content.shrines.shrinealtar.holo.ShrineHoloModel;
 import xyz.peatral.arcaneforces.infrastructure.ponder.ModPonders;
 
 @OnlyIn(Dist.CLIENT)
@@ -39,5 +41,10 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void registerClientStuff(final FMLClientSetupEvent event) {
         PonderIndex.addPlugin(new ModPonders());
+    }
+
+    @SubscribeEvent
+    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(ShrineHoloModel.LAYER_LOCATION, ShrineHoloModel::createBodyLayer);
     }
 }

@@ -20,13 +20,11 @@ import xyz.peatral.arcaneforces.ModItems;
 import xyz.peatral.arcaneforces.content.incense.ChanceDrop;
 import xyz.peatral.arcaneforces.content.incense.IncenseLogBlock;
 import xyz.peatral.arcaneforces.content.incense.TappingRecipe;
-import xyz.peatral.arcaneforces.content.shrines.WaystoneBlock;
+import xyz.peatral.arcaneforces.content.shrines.waystone.WaystoneBlock;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-
-import static xyz.peatral.arcaneforces.ModItems.BLOODY_SEN;
 
 public class ModRecipeProvider extends RecipeProvider {
     public ModRecipeProvider(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
