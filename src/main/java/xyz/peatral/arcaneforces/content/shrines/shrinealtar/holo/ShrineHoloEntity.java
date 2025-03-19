@@ -15,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
-import org.apache.commons.lang3.tuple.Triple;
 import xyz.peatral.arcaneforces.ModTags;
+import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetwork;
 import xyz.peatral.arcaneforces.content.shrines.shrinealtar.ShrineAltarBlockEntity;
 import xyz.peatral.arcaneforces.content.shrines.network.ShrineNetworkLocation;
 
@@ -30,14 +30,36 @@ public class ShrineHoloEntity extends Entity {
         super(entityType, level);
     }
 
-    @Override
-    public boolean isPickable() {
-        return true;
+    public void setup(BlockPos parent, BlockPos target) {
+        this.getEntityData().set(PARENT, parent);
+        this.getEntityData().set(TARGET, target);
+    }
+
+    public Optional<ShrineNetworkLocation> getTarget() {
+        return ShrineNetwork.getNetwork(level()).map(n -> n.getLocation(getEntityData().get(TARGET)));
+    }
+
+    public Optional<ShrineAltarBlockEntity> getParent() {
+        BlockEntity be = this.level().getBlockEntity(getEntityData().get(ShrineHoloEntity.PARENT));
+        return be instanceof ShrineAltarBlockEntity parent ? Optional.of(parent) : Optional.empty();
+    }
+
+    private boolean isValid() {
+        Optional<ShrineAltarBlockEntity> parent = getParent();
+        Optional<ShrineNetworkLocation> target = getTarget();
+
+        return parent.isPresent() && target.isPresent()
+                && parent.get().getState() != ShrineAltarBlockEntity.State.CLOSED
+                && parent.get().isLocationConnected(getEntityData().get(TARGET));
+    }
+
+    public float getAnimationLerp(float partialTicks) {
+        return isValid() ? getParent().get().getHoloAnimationProgress(partialTicks) : 0.0f;
     }
 
     @Override
-    public boolean mayInteract(Level level, BlockPos pos) {
-        return true;
+    public boolean isPickable() {
+        return isValid() && getParent().get().getState() == ShrineAltarBlockEntity.State.OPEN;
     }
 
     @Override
@@ -60,22 +82,10 @@ public class ShrineHoloEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
-        BlockPos parentPos = this.getEntityData().get(ShrineHoloEntity.PARENT);
-        BlockPos targetPos = this.getEntityData().get(ShrineHoloEntity.PARENT);
-        BlockEntity be = this.level().getBlockEntity(parentPos);
 
-        if (!(be instanceof ShrineAltarBlockEntity parent)) {
-            return;
+        if (!isValid()) {
+            //setRemoved(RemovalReason.DISCARDED);
         }
-        Optional<ShrineNetworkLocation> target = parent.connectedLocations.stream().filter(l -> l.getLeft().equals(targetPos)).map(Triple::getRight).findAny();
-        if (target.isEmpty()) {
-            return;
-        }
-        double furthestDistance = parent.furthestDistance;
-        if (Double.isNaN(furthestDistance)) {
-            return;
-        }
-        setPos(targetPos.getCenter().subtract(parentPos.getCenter()).scale(3 / Math.sqrt(furthestDistance)).add(0, 1, 0));
     }
 
     @Override
